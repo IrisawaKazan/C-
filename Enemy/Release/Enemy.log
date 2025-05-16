@@ -1,0 +1,8 @@
+﻿  enemy.cpp
+  main.cpp
+C:\Users\student\source\repos\Enemy\main.cpp(62,15): warning C4101: 'type': ローカル変数は 1 度も使われていません。
+  コード生成しています。
+  Previous IPDB not found, fall back to full compilation.
+  コード生成が終了しました。
+  All 27 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Enemy.vcxproj -> C:\Users\student\source\repos\Enemy\Enemy.exe
