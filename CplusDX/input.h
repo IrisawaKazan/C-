@@ -49,4 +49,21 @@ private:
 	BYTE m_aKeyStateTrigger[NUM_KEY_MAX];
 };
 
+//// マウスクラス
+//class CInputMouse : public CInput
+//{
+//public:
+//	CInputMouse();
+//	~CInputMouse();
+//
+//	HRESULT Init(HINSTANCE hInstance, HWND hWnd);
+//	void Uninit(void);
+//	void Update(void);
+//	bool GetPress(int nKey);
+//	bool GetTrigger(int nKey);
+//
+//private:
+//
+//};
+
 #endif

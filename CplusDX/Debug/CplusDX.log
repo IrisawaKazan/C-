@@ -1,2 +1,3 @@
 ﻿  object2D.cpp
+C:\Users\student\source\repos\CplusDX\object2D.cpp(177,21): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe

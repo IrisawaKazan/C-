@@ -24,7 +24,7 @@
 
 // マクロ定義
 #define CLASS_NAME "WindowClass"  // ウィンドウクラスの名前
-#define WINDOW_NAME ""       // ウィンドウの名前
+#define WINDOW_NAME "C++DX 移動できた 移動制限のコードが汚い"       // ウィンドウの名前
 #define SCREEN_WIDTH (1280)       // ウィンドウの幅
 #define SCREEN_HEIGHT (720)       // ウィンドウの高さ
 #define FVF_VERTEX_2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)

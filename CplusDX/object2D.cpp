@@ -137,7 +137,62 @@ void CObject2D::Uninit(void)
 //----------------------------------------
 void CObject2D::Update(void)
 {
-	
+	CInputKeyboard* pInputKeyboard;
+
+	// キーボードの取得
+	pInputKeyboard = CManager::GetInputKeyboard();
+
+	// デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+
+	VERTEX_2D* pVtx = NULL; // 頂点情報へのポインタ
+
+	// 頂点バッファをロックし,頂点情報へのポインタを取得
+	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
+
+	int nSurprise = NULL;
+
+	// 上へ移動
+	if (pInputKeyboard->GetTrigger(DIK_UP) == true)
+	{
+		m_pos.y -= 50.0f;
+	}
+	// 左へ移動
+	if (pInputKeyboard->GetTrigger(DIK_LEFT) == true)
+	{
+		m_pos.x -= 50.0f;
+	}
+	// 下へ移動
+	if (pInputKeyboard->GetTrigger(DIK_DOWN) == true)
+	{
+		m_pos.y += 50.0f;
+	}
+	// 右へ移動
+	if (pInputKeyboard->GetTrigger(DIK_RIGHT) == true)
+	{
+		m_pos.x += 50.0f;
+	}
+	if (pInputKeyboard->GetPress(DIK_SPACE) == true)
+	{
+		nSurprise += 25.0f;
+	}
+
+	// 頂点座標の設定
+	pVtx[0].pos.x = m_pos.x - 50.0f - nSurprise;
+	pVtx[0].pos.y = m_pos.y - nSurprise;
+	pVtx[0].pos.z = 0.0f;
+	pVtx[1].pos.x = m_pos.x + 50.0f + nSurprise;
+	pVtx[1].pos.y = m_pos.y - nSurprise;
+	pVtx[1].pos.z = 0.0f;
+	pVtx[2].pos.x = m_pos.x - 50.0f - nSurprise;
+	pVtx[2].pos.y = m_pos.y + 80.0f + nSurprise;
+	pVtx[2].pos.z = 0.0f;
+	pVtx[3].pos.x = m_pos.x + 50.0f + nSurprise;
+	pVtx[3].pos.y = m_pos.y + 80.0f + nSurprise;
+	pVtx[3].pos.z = 0.0f;
+
+	// 頂点バッファをアンロックする
+	m_pVtxBuff->Unlock();
 }
 
 //----------------------------------------
@@ -301,7 +356,6 @@ void CPlayer::Uninit(void)
 //----------------------------------------
 void CPlayer::Update(void)
 {
-
 	CInputKeyboard* pInputKeyboard;
 
 	// キーボードの取得
@@ -317,25 +371,66 @@ void CPlayer::Update(void)
 
 	m_nCounterAnim++; // カウンターを計算
 
-	// 上へ移動
-	if (pInputKeyboard->GetPress(DIK_W) == true)
-	{
-		m_move.y -= PLAYER_SPEED;
+	if (m_pos.y >= 0.0f)
+	{// 上への移動制限
+
+		if (m_pos.x >= 40.0f)
+		{// 左への移動制限
+
+			if (m_pos.x <= SCREEN_WIDTH - 40.0f)
+			{// 右への移動制限
+
+				if (m_pos.y <= SCREEN_HEIGHT - 80.0f)
+				{// 下への移動制限
+
+					// 上へ移動
+					if (pInputKeyboard->GetPress(DIK_W) == true)
+					{
+						m_move.y -= PLAYER_SPEED;
+					}
+					// 左へ移動
+					if (pInputKeyboard->GetPress(DIK_A) == true)
+					{
+						m_move.x -= PLAYER_SPEED;
+					}
+					// 下へ移動
+					if (pInputKeyboard->GetPress(DIK_S) == true)
+					{
+						m_move.y += PLAYER_SPEED;
+					}
+					// 右へ移動
+					if (pInputKeyboard->GetPress(DIK_D) == true)
+					{
+						m_move.x += PLAYER_SPEED;
+					}
+
+					// 位置を更新
+					m_pos.x += m_move.x;
+					m_pos.y += m_move.y;
+					//m_move.y += 0.05f; // 重力加算
+
+					// 移動量を更新(減衰させる)
+					m_move.x += (0.0f - m_move.x) * 0.085f;
+					m_move.y += (0.0f - m_move.y) * 0.085f;
+				}
+				else
+				{// 下への移動制限(上へ押し返す)
+					m_pos.y -= 1.0f;
+				}
+			}
+			else
+			{// 右への移動制限(左へ押し返す)
+				m_pos.x -= 1.0f;
+			}
+		}
+		else
+		{// 左への移動制限(右へ押し返す)
+			m_pos.x += 1.0f;
+		}
 	}
-	// 左へ移動
-	if (pInputKeyboard->GetPress(DIK_A) == true)
-	{
-		m_move.x -= PLAYER_SPEED;
-	}
-	// 下へ移動
-	if (pInputKeyboard->GetPress(DIK_S) == true)
-	{
-		m_move.y += PLAYER_SPEED;
-	}
-	// 右へ移動
-	if (pInputKeyboard->GetPress(DIK_D) == true)
-	{
-		m_move.x += PLAYER_SPEED;
+	else
+	{// 上への移動制限(下へ押し返す)
+		m_pos.y += 1.0f;
 	}
 	// 移動するとアニメーションする
 	if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_D) == true)
@@ -353,15 +448,6 @@ void CPlayer::Update(void)
 			pVtx[3].tex = D3DXVECTOR2(m_nPatternAnim * 0.125f + 0.125f, 1.0f);
 		}
 	}
-
-	// 位置を更新
-	m_pos.x += m_move.x;
-	m_pos.y += m_move.y;
-	//m_move.y += 0.05f; // 重力加算
-
-	// 移動量を更新(減衰させる)
-	m_move.x += (0.0f - m_move.x) * 0.085f;
-	m_move.y += (0.0f - m_move.y) * 0.085f;
 
 	// テクスチャ座標の更新
 	pVtx[0].pos.x = m_pos.x - 50.0f;
