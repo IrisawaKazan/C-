@@ -8,18 +8,18 @@
 #include"renderer.h"
 #include"object.h"
 #include"object2D.h"
+#include"manager.h"
 
 // プロトタイプ宣言
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM IParam);
-
-// グローバル変数宣言
-CRenderer* g_pRenderer = NULL;
 
 //----------------------------------------
 // メイン関数
 //----------------------------------------
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+	CManager* pManager = NULL;
+
 	DWORD dwCurrentTime;
 	DWORD dwExecLastTime;
 
@@ -63,18 +63,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 		hInstance,
 		NULL);
 
-	// レンダラーの生成
-	g_pRenderer = new CRenderer;
+	// マネージャの生成
+	pManager = new CManager;
 
-	// 初期化処理
-	if (FAILED(g_pRenderer->Init(hWnd, TRUE)))
-	{// 初期化処理が失敗した場合
-		return -1;
-	}
+	// マネージャの初期化処理
+	pManager->Init(hInstance, hWnd, TRUE);
 
-	// オブジェクトの生成
-	CObject2D::Create()->SetPosition(D3DXVECTOR3(100.0f, 100.0f, 0.0f));
-	CObject2D::Create()->SetPosition(D3DXVECTOR3(500.0f, 500.0f, 0.0f));
+	//// オブジェクトの生成
+	//CObject2D::Create()->SetPosition(D3DXVECTOR3(100.0f, 100.0f, 0.0f));
+	//CObject2D::Create()->SetPosition(D3DXVECTOR3(500.0f, 500.0f, 0.0f));
+	//CObject2D::Create()->SetPosition(D3DXVECTOR3(800.0f, 250.0f, 0.0f));
 
 	//ウィンドウの表示
 	ShowWindow(hWnd, nCmdShow); // ウィンドウの表示状態を設定
@@ -97,11 +95,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 		}
 		else
 		{
-			// 更新処理
-			g_pRenderer->Update();
+			// マネージャの更新処理
+			pManager->Update();
 
-			// 描画処理
-			g_pRenderer->Draw();
+			// マネージャの描画処理
+			pManager->Draw();
 		}
 	}
 	
@@ -109,14 +107,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 	CObject::ReleaseAll();
 
 	// レンダラーの破棄
-	if (g_pRenderer != NULL)
+	if (pManager != NULL)
 	{
 		// 終了処理
-		g_pRenderer->Uninit();
+		pManager->Uninit();
 
-		delete g_pRenderer;
+		delete pManager;
 
-		g_pRenderer = NULL;
+		pManager = NULL;
 	}
 
 	// ウィンドウクラスの登録を解除
@@ -148,12 +146,4 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM IParam)
 		break;
 	}
 	return DefWindowProc(hWnd, uMsg, wParam, IParam);
-}
-
-//----------------------------------------
-// レンダラーの取得処理
-//----------------------------------------
-CRenderer* GetRenderer(void)
-{
-	return g_pRenderer;
 }

@@ -10,6 +10,9 @@
 #include"main.h"
 #include"object.h"
 
+// マクロ定義
+#define PLAYER_SPEED (0.1f) // プレイヤーの速さ
+
 // オブジェクト2Dクラス
 class CObject2D : public CObject
 {
@@ -24,12 +27,52 @@ public:
 	void Draw(void);
 	void SetPosition(D3DXVECTOR3 pos);
 	//void SetRotation(D3DXVECTOR3 rot);
-
-private:
+protected:
 	LPDIRECT3DTEXTURE9 m_pTexture;
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;
 	D3DXVECTOR3 m_pos;
+private:
+	//LPDIRECT3DTEXTURE9 m_pTexture;
+	//LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;
+	//D3DXVECTOR3 m_pos;
 	//D3DXVECTOR3 m_rot;
 };
+
+// プレイヤークラス
+class CPlayer : public CObject2D
+{
+public:
+	CPlayer();
+	~CPlayer();
+
+	static CPlayer* Create(void);
+	HRESULT Init(void);
+	void Uninit(void);
+	void Update(void);
+	void Draw(void);
+	void SetPosition(D3DXVECTOR3 pos);
+
+private:
+	int m_nCounterAnim; // アニメーションカウンター
+	int m_nPatternAnim; // アニメーションパターンNo.
+	D3DXVECTOR3 m_move;
+};
+
+//// バックグラウンドクラス
+//class CBackground : public CObject2D
+//{
+//public:
+//	CBackground();
+//	~CBackground();
+//
+//	static CBackground* Create(void);
+//	HRESULT Init(void);
+//	void Uninit(void);
+//	void Update(void);
+//	void Draw(void);
+//	void SetPosition(D3DXVECTOR3 pos);
+//
+//private:
+//};
 
 #endif

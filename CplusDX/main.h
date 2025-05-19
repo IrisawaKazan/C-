@@ -24,7 +24,7 @@
 
 // マクロ定義
 #define CLASS_NAME "WindowClass"  // ウィンドウクラスの名前
-#define WINDOW_NAME "C++DX"       // ウィンドウの名前
+#define WINDOW_NAME ""       // ウィンドウの名前
 #define SCREEN_WIDTH (1280)       // ウィンドウの幅
 #define SCREEN_HEIGHT (720)       // ウィンドウの高さ
 #define FVF_VERTEX_2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
@@ -37,11 +37,5 @@ typedef struct
 	D3DCOLOR col;    // 座標カラー
 	D3DXVECTOR2 tex; // テクスチャ座標
 }VERTEX_2D;
-
-// 前方宣言
-class CRenderer;
-
-// プロトタイプ宣言
-CRenderer* GetRenderer(void);
 
 #endif
