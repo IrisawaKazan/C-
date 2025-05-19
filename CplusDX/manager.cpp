@@ -6,6 +6,7 @@
 //==============================================================
 #include"manager.h"
 #include"object2D.h"
+#include"background.h"
 
 // 静的メンバ変数宣言
 CRenderer* CManager::m_pRenderer = {};
@@ -51,6 +52,7 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd, BOOL bWindow)
 	}
 
 	// オブジェクトの生成
+	CBackground::Create(); // 背景
 	CObject2D::Create()->SetPosition(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 3.0f, 0.0f)); // サンプルのテクスチャ(スペースキーの画像)
 	//CObject2D::Create()->SetPosition(D3DXVECTOR3(500.0f, 500.0f, 0.0f));
 	//CObject2D::Create()->SetPosition(D3DXVECTOR3(800.0f, 250.0f, 0.0f));

@@ -58,21 +58,4 @@ private:
 	D3DXVECTOR3 m_move;
 };
 
-//// バックグラウンドクラス
-//class CBackground : public CObject2D
-//{
-//public:
-//	CBackground();
-//	~CBackground();
-//
-//	static CBackground* Create(void);
-//	HRESULT Init(void);
-//	void Uninit(void);
-//	void Update(void);
-//	void Draw(void);
-//	void SetPosition(D3DXVECTOR3 pos);
-//
-//private:
-//};
-
 #endif
