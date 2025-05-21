@@ -1,0 +1,19 @@
+﻿  background.cpp
+  bullet.cpp
+  input.cpp
+  main.cpp
+C:\Users\student\source\repos\CplusDX\main.cpp(24,8): warning C4101: 'dwExecLastTime': ローカル変数は 1 度も使われていません。
+C:\Users\student\source\repos\CplusDX\main.cpp(23,8): warning C4101: 'dwCurrentTime': ローカル変数は 1 度も使われていません。
+  manager.cpp
+  object.cpp
+  object2D.cpp
+  player.cpp
+  renderer.cpp
+  コード生成しています。
+  Compiler switch has changed, fall back to full compilation.
+C:\Users\student\source\repos\CplusDX\input.cpp(42): warning C4715: 'CInput::Init': 値を返さないコントロール パスがあります。
+C:\Users\student\source\repos\CplusDX\input.cpp(109): warning C4715: 'CInputKeyboard::Init': 値を返さないコントロール パスがあります。
+C:\Users\student\source\repos\CplusDX\manager.cpp(81): warning C4715: 'CManager::Init': 値を返さないコントロール パスがあります。
+  All 80 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
