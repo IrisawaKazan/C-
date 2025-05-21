@@ -1,4 +1,0 @@
-﻿  manager.cpp
-C:\Users\student\source\repos\CplusDX\manager.cpp(67,11): warning C4551: 関数呼び出しに引数リストがありません。
-C:\Users\student\source\repos\CplusDX\manager.cpp(60): warning C4715: 'CManager::Init': 値を返さないコントロール パスがあります。
-  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
