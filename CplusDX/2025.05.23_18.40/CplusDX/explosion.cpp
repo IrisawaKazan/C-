@@ -1,0 +1,149 @@
+//==============================================================
+//
+// [explosion.h]
+// Author: Irisawa Kazan
+//
+//==============================================================
+#include"explosion.h"
+#include"manager.h"
+#include"renderer.h"
+
+// 静的メンバ変数宣言
+LPDIRECT3DTEXTURE9 CExplosion::m_pTexture = 0;
+
+//----------------------------------------
+// エクスプロージョンのコンストラクタ
+//----------------------------------------
+CExplosion::CExplosion()
+{
+
+}
+
+//----------------------------------------
+// エクスプロージョンのデストラクタ
+//----------------------------------------
+CExplosion::~CExplosion()
+{
+
+}
+
+//----------------------------------------
+// テクスチャの生成(読み込み)
+//----------------------------------------
+HRESULT CExplosion::Load(void)
+{
+	// デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+
+	// テクスチャの初期化処理
+	D3DXCreateTextureFromFile(pDevice,
+		"data\\TEXTURE\\explosion000.png",
+		&m_pTexture);
+
+	return S_OK;
+}
+
+//----------------------------------------
+// テクスチャの生成(読み込み)
+//----------------------------------------
+void CExplosion::Unload(void)
+{
+	// テクスチャの破棄
+	if (m_pTexture != NULL)
+	{
+		m_pTexture->Release();
+		m_pTexture = NULL;
+	}
+}
+
+//----------------------------------------
+// エクスプロージョンの生成処理
+//----------------------------------------
+CExplosion* CExplosion::Create(D3DXVECTOR3 pos, float xsize, float ysize)
+{
+	CExplosion* pExplosion;
+
+	// オブジェクト2Dの生成
+	pExplosion = new CExplosion;
+
+	pExplosion->SetPosition(pos);
+
+	// テクスチャの設定
+	CObject2D::SetUV(0.125f, 1.0f);
+
+	// サイズの設定
+	pExplosion->SetSize(xsize, ysize);
+
+	// 初期化処理
+	pExplosion->Init(pos);
+
+	// テクスチャの割り当て
+	pExplosion->BindTexture(m_pTexture);
+
+	return pExplosion;
+}
+
+//----------------------------------------
+// エクスプロージョンの初期化処理
+//----------------------------------------
+HRESULT CExplosion::Init(D3DXVECTOR3 pos)
+{
+	CObject2D::Init(pos);
+
+	return S_OK;
+}
+
+//----------------------------------------
+// エクスプロージョンの終了処理
+//----------------------------------------
+void CExplosion::Uninit(void)
+{
+	CObject2D::Uninit();
+}
+
+//----------------------------------------
+// エクスプロージョンの更新処理
+//----------------------------------------
+void CExplosion::Update(void)
+{
+	CObject2D::Update();
+
+	// 位置の取得
+	D3DXVECTOR3 pos = CExplosion::GetPos();
+
+	CObject2D::TextureAnimation(8, 1, 5);
+
+	int nCntAnim = CObject2D::GetCntAnim();
+	int nPtAnim = CObject2D::GetPtAnim();
+
+	if (nCntAnim == 0 && nPtAnim == 0)
+	{
+		CExplosion::Release();
+	}
+
+	CExplosion::SetPosition(pos);
+}
+
+//----------------------------------------
+// エクスプロージョンの描画処理
+//----------------------------------------
+void CExplosion::Draw(void)
+{
+	CObject2D::Draw();
+}
+
+//----------------------------------------
+// エクスプロージョンの位置の設定処理
+//----------------------------------------
+void CExplosion::SetPosition(D3DXVECTOR3 pos)
+{
+	CObject2D::SetPosition(pos);
+}
+
+//----------------------------------------
+// プレイヤーのサイズの設定処理
+//----------------------------------------
+void CExplosion::SetSize(float xsize, float ysize)
+{
+	CObject2D::SetSize(xsize, ysize);
+}
