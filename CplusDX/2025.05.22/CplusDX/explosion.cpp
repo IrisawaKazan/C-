@@ -113,6 +113,8 @@ void CExplosion::Update(void)
 	CExplosion::SetPosition(pos);
 
 	CObject2D::Update();
+
+	//CExplosion::Release();
 }
 
 //----------------------------------------
