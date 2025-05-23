@@ -12,7 +12,7 @@
 #include"object2D.h"
 
 // マクロ定義
-#define BULLET_SPEED (0.1f)
+#define BULLET_SPEED (5.0f)
 
 // バレットクラス
 class CBullet : public CObject2D

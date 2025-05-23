@@ -25,11 +25,11 @@ public:
 	void Draw(void);
 
 	void SetPosition(D3DXVECTOR3 pos);
-
-	void TextureAnimation(int texposx, int texposy, int animspeed);
-
 	static void SetUV(float aUV, float zUV);
 	void SetSize(float xsize, float ysize);
+
+	void TextureAnimation(int texposx, int texposy, int animspeed);
+	void TextureAnimationOnepattern(int texposx, int texposy, int animspeed);
 
 	D3DXVECTOR3 GetPos(void);
 
@@ -48,6 +48,8 @@ private:
 	static float m_fzUV;
 	float m_fxSize;
 	float m_fySize;
+
+	bool m_bUse;
 };
 
 #endif

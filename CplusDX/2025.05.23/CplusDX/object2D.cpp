@@ -28,6 +28,8 @@ CObject2D::CObject2D()
 	m_fLength = 0.0f;
 	m_fxSize = 0.0f;
 	m_fySize = 0.0f;
+
+	m_bUse = NULL;
 }
 
 //----------------------------------------
@@ -206,6 +208,24 @@ void CObject2D::SetPosition(D3DXVECTOR3 pos)
 }
 
 //----------------------------------------
+// テクスチャの設定処理
+//----------------------------------------
+void CObject2D::SetUV(float aUV, float zUV)
+{
+	m_faUV = aUV;
+	m_fzUV = zUV;
+}
+
+//----------------------------------------
+// サイズの設定処理
+//----------------------------------------
+void CObject2D::SetSize(float xsize, float ysize)
+{
+	m_fxSize = xsize;
+	m_fySize = ysize;
+}
+
+//----------------------------------------
 // テクスチャアニメーションの処理
 //----------------------------------------
 void CObject2D::TextureAnimation(int texposx, int texposy, int animspeed)
@@ -238,22 +258,47 @@ void CObject2D::TextureAnimation(int texposx, int texposy, int animspeed)
 }
 
 //----------------------------------------
-// テクスチャの設定処理
+// ワンパターンのテクスチャアニメーションの処理
 //----------------------------------------
-void CObject2D::SetUV(float aUV, float zUV)
+void CObject2D::TextureAnimationOnepattern(int texposx, int texposy, int animspeed)
 {
-	m_faUV = aUV;
-	m_fzUV = zUV;
+	float OffSetX = 1.0f / texposx;
+
+	m_nCounterAnim++; // カウンターを計算
+
+	VERTEX_2D* pVtx; // 頂点情報へのポインタ
+
+	// 頂点バッファをロックし,頂点情報へのポインタを取得
+	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
+
+	if (m_bUse == true)
+	{
+		// カウンタを進めて,パターンNo.を更新dする
+		m_nCounterAnim++;
+
+		if (m_nCounterAnim % animspeed == 0)
+		{
+			m_nCounterAnim = 0; // カウンターを初期値に戻す
+
+			m_nPatternAnim++;
+
+			//テクスチャ座標の更新
+			pVtx[0].tex = D3DXVECTOR2(m_nPatternAnim * OffSetX, 0.0f);
+			pVtx[1].tex = D3DXVECTOR2(m_nPatternAnim * OffSetX + OffSetX, 0.0f);
+			pVtx[2].tex = D3DXVECTOR2(m_nPatternAnim * OffSetX, 1.0f);
+			pVtx[3].tex = D3DXVECTOR2(m_nPatternAnim * OffSetX + OffSetX, 1.0f);
+		}
+
+		if (m_nPatternAnim >= texposx)
+		{
+			m_bUse = false; // 使用していない状態にする
+		}
+	}
+
+	// 頂点バッファをアンロックする
+	m_pVtxBuff->Unlock();
 }
 
-//----------------------------------------
-// サイズの設定処理
-//----------------------------------------
-void CObject2D::SetSize(float xsize, float ysize)
-{
-	m_fxSize = xsize;
-	m_fySize = ysize;
-}
 
 //----------------------------------------
 // 位置の取得処理

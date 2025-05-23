@@ -114,7 +114,7 @@ void CExplosion::Update(void)
 
 	VERTEX_2D* pVtx = NULL; // 頂点情報へのポインタ
 
-	CObject2D::TextureAnimation(8, 1, 5);
+	CObject2D::TextureAnimationOnepattern(8, 1, 5);
 
 	CExplosion::SetPosition(pos);
 

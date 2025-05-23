@@ -118,7 +118,7 @@ void CBullet::Update(void)
 	// 寿命のカウントダウン
 	m_nLife--;
 
-	m_move.x += BULLET_SPEED;
+	m_move.x = BULLET_SPEED;
 
 	// 位置を更新
 	pos.x += m_move.x;
