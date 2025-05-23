@@ -28,6 +28,7 @@ public:
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
+
 	void SetPosition(/*const */D3DXVECTOR3 pos);
 	void SetSize(float xsize, float ysize);
 

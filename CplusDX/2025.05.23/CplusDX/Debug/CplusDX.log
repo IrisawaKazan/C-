@@ -1,2 +1,10 @@
-﻿  player.cpp
+﻿  background.cpp
+  bullet.cpp
+  explosion.cpp
+  main.cpp
+  manager.cpp
+  object.cpp
+  object2D.cpp
+  player.cpp
+  コードを生成中...
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe

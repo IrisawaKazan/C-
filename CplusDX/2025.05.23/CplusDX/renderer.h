@@ -20,6 +20,7 @@ public:
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
+
 	LPDIRECT3DDEVICE9 GetDevice(void);
 
 private:

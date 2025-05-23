@@ -59,15 +59,12 @@ void CExplosion::Unload(void)
 //----------------------------------------
 // エクスプロージョンの生成処理
 //----------------------------------------
-CExplosion* CExplosion::Create(D3DXVECTOR3 pos)
+CExplosion* CExplosion::Create(D3DXVECTOR3 pos, float xsize, float ysize)
 {
 	CExplosion* pExplosion;
 
 	// テクスチャの設定
 	CObject2D::SetUV(0.125f, 1.0f);
-
-	// サイズの設定
-	//CObject2D::SetSize(0.0f, 0.0f);
 
 	// オブジェクト2Dの生成
 	pExplosion = new CExplosion;
@@ -76,6 +73,9 @@ CExplosion* CExplosion::Create(D3DXVECTOR3 pos)
 	pExplosion->Init(pos);
 
 	pExplosion->SetPosition(pos);
+
+	// サイズの設定
+	pExplosion->SetSize(xsize, ysize);
 
 	// テクスチャの割り当て
 	pExplosion->BindTexture(m_pTexture);
@@ -137,4 +137,12 @@ void CExplosion::Draw(void)
 void CExplosion::SetPosition(D3DXVECTOR3 pos)
 {
 	CObject2D::SetPosition(pos);
+}
+
+//----------------------------------------
+// プレイヤーのサイズの設定処理
+//----------------------------------------
+void CExplosion::SetSize(float xsize, float ysize)
+{
+	CObject2D::SetSize(xsize, ysize);
 }

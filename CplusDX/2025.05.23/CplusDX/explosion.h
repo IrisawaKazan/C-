@@ -19,13 +19,16 @@ public:
 
 	static HRESULT Load(void);
 	static void Unload(void);
-	static CExplosion* Create(D3DXVECTOR3 pos);
+
+	static CExplosion* Create(D3DXVECTOR3 pos, float xsize, float ysize);
 
 	HRESULT Init(D3DXVECTOR3 pos);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
+
 	void SetPosition(D3DXVECTOR3 pos);
+	void SetSize(float xsize, float ysize);
 
 private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;

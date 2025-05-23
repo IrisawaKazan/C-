@@ -41,6 +41,7 @@ public:
 	HRESULT Init(HINSTANCE hInstance, HWND hWnd);
 	void Uninit(void);
 	void Update(void);
+
 	bool GetPress(int nKey);
 	bool GetTrigger(int nKey);
 

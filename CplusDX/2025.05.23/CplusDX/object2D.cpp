@@ -28,7 +28,6 @@ CObject2D::CObject2D()
 	m_fLength = 0.0f;
 	m_fxSize = 0.0f;
 	m_fySize = 0.0f;
-	//m_rot = D3DXVECTOR3(NULL, NULL, NULL);
 }
 
 //----------------------------------------
@@ -224,6 +223,7 @@ void CObject2D::TextureAnimation(int texposx, int texposy, int animspeed)
 	if (m_nCounterAnim % animspeed == 0)
 	{
 		m_nCounterAnim = 0;                              // カウンターを初期値に戻す
+
 		m_nPatternAnim = (m_nPatternAnim + 1) % texposx; // パターンNo.を更新する
 
 		// テクスチャ座標の設定

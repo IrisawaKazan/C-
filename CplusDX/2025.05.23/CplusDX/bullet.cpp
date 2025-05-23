@@ -131,7 +131,7 @@ void CBullet::Update(void)
 	// 外に出る, ライフがなくなると消す
 	if (pos.x < 0.0f || pos.x > SCREEN_WIDTH || pos.y < 0.0f || pos.y > SCREEN_HEIGHT || m_nLife < 0)
 	{
-		CExplosion::Create(pos);
+		CExplosion::Create(pos, 50.0f, 50.0f);
 
 		CBullet::Release();
 	}
