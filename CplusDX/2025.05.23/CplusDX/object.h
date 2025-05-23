@@ -9,12 +9,26 @@
 
 #include"main.h"
 
-#define MAX_OBJ (128)
+// マクロ定義
+#define MAX_OBJ (256)
 
 // オブジェクトクラス
 class CObject
 {
 public:
+	// オブジェクトの種類
+	typedef enum
+	{
+		TYPE_NONE = 0,
+		TYPE_PLAYER,     // プレイヤー
+		TYPE_ENEMY,      // 敵
+		TYPE_BULLET,     // 弾
+		TYPE_EXPLOSION,  // 爆発
+		TYPE_BACKGROUND, // 背景
+
+		TYPE_MAX
+	}TYPE;
+
 	CObject();
 	virtual	~CObject();
 
@@ -29,6 +43,12 @@ public:
 
 	virtual void SetPosition(D3DXVECTOR3 pos) = 0;
 
+	virtual D3DXVECTOR3 GetPos(void) = 0;
+
+	void SetType(TYPE type);
+	TYPE GetType(void);
+	static CObject* GetObj(int nIdx);
+
 protected:
 	void Release(void);
 
@@ -36,6 +56,7 @@ private:
 	static CObject* m_apObject[MAX_OBJ];
 	static int m_nNumAll; // オブジェクトの総数
 	int m_nID;            // 自分自身のID
+	TYPE m_type;
 };
 
 #endif

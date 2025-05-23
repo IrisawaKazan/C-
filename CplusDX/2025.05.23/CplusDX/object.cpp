@@ -18,6 +18,7 @@ CObject* CObject::m_apObject[MAX_OBJ] = {}; // オブジェクトへのポインタ
 CObject::CObject()
 {
 	m_nID = 0;
+	m_type = TYPE_NONE;
 
 	for (int nCntObj = 0; nCntObj < MAX_OBJ; nCntObj++)
 	{
@@ -82,6 +83,30 @@ void CObject::DrawAll(void)
 			m_apObject[nCntObj]->Draw();
 		}
 	}
+}
+
+//----------------------------------------
+// オブジェクトのタイプ設定処理
+//----------------------------------------
+void CObject::SetType(TYPE type)
+{
+	m_type = type;
+}
+
+//----------------------------------------
+// オブジェクトのタイプ取得処理
+//----------------------------------------
+CObject::TYPE CObject::GetType(void)
+{
+	return m_type;
+}
+
+//----------------------------------------
+// オブジェクトの取得処理
+//----------------------------------------
+CObject* CObject::GetObj(int nIdx)
+{
+	return m_apObject[nIdx];
 }
 
 //----------------------------------------

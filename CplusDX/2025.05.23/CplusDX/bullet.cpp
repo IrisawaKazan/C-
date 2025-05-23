@@ -9,6 +9,7 @@
 #include"manager.h"
 #include"input.h"
 #include"explosion.h"
+#include"enemy.h"
 
 // 静的メンバ変数宣言
 LPDIRECT3DTEXTURE9 CBullet::m_pTexture = 0;
@@ -96,6 +97,9 @@ HRESULT CBullet::Init(D3DXVECTOR3 pos)
 
 	CObject2D::Init(pos);
 
+	// 種類の設定処理
+	SetType(TYPE_BULLET);
+
 	return S_OK;
 }
 
@@ -135,6 +139,9 @@ void CBullet::Update(void)
 
 		CBullet::Release();
 	}
+
+	// 敵との当たり判定
+	CollisionEnemy(pos);
 }
 
 //----------------------------------------
@@ -159,4 +166,53 @@ void CBullet::SetPosition(D3DXVECTOR3 pos)
 void CBullet::SetSize(float xsize, float ysize)
 {
 	CObject2D::SetSize(xsize, ysize);
+}
+
+//----------------------------------------
+// 敵との当たり判定
+//----------------------------------------
+bool CBullet::CollisionEnemy(D3DXVECTOR3 pos)
+{
+	for (int nCount = 0; nCount < MAX_OBJ; nCount++)
+	{
+		CObject* pObj; // オブジェクトの情報へのポインタ
+
+		// オブジェクトを取得
+		pObj = GetObj(nCount);
+
+		if (pObj != NULL)
+		{
+			TYPE type;
+
+			// 種類を取得
+			type = pObj->GetType();
+
+			if (type == TYPE_ENEMY)
+			{// 種類が敵の場合
+
+				D3DXVECTOR3 EnemyPos;
+				
+				EnemyPos = pObj->GetPos();
+
+				if (pos.x <= EnemyPos.x + 40.0f
+					&& pos.x >= EnemyPos.x - 40.0f
+					&& pos.y >= EnemyPos.y - 55.0f
+					&& pos.y <= EnemyPos.y + 55.0f)
+				{
+					// 爆発を生成
+					CExplosion::Create(pos, 50.0f, 50.0f);
+
+					// 敵の終了処理
+					pObj->Uninit();
+
+					// 自分自身の終了処理
+					CBullet::Release();
+
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }

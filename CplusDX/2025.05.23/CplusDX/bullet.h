@@ -8,7 +8,6 @@
 #define _BULLET_H_ // 2重インクルード防止のマクロ定義
 
 #include"main.h"
-#include"object.h"
 #include"object2D.h"
 
 // マクロ定義
@@ -33,6 +32,8 @@ public:
 
 	void SetPosition(D3DXVECTOR3 pos);
 	void SetSize(float xsize, float ysize);
+
+	bool CollisionEnemy(D3DXVECTOR3 pos);
 
 private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;

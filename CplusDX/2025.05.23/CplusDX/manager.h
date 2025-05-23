@@ -14,6 +14,7 @@ class CRenderer;
 class CInputKeyboard;
 class CPlayer;
 class CBackground;
+class CEnemy;
 
 // マネージャクラス
 class CManager
@@ -31,12 +32,14 @@ public:
 	static CInputKeyboard* GetInputKeyboard(void);
 	static CPlayer* GetPlayer(void);
 	static CBackground* GetBackground(void);
+	static CEnemy* GetEnemy(void);
 
 private:
 	static CRenderer* m_pRenderer;
 	static CInputKeyboard* m_pInputKeyboard;
 	static CPlayer* m_pPlayer;
 	static CBackground* m_pBackground;
+	static CEnemy* m_pEnemy;
 };
 
 #endif

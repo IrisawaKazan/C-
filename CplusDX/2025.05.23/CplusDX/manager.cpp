@@ -12,12 +12,14 @@
 #include"input.h"
 #include"bullet.h"
 #include"explosion.h"
+#include"enemy.h"
 
 // 静的メンバ変数宣言
 CRenderer* CManager::m_pRenderer = {};
 CInputKeyboard* CManager::m_pInputKeyboard = {};
 CPlayer* CManager::m_pPlayer = {};
 CBackground* CManager::m_pBackground = {};
+CEnemy* CManager::m_pEnemy = {};
 
 //----------------------------------------
 // コンストラクタ
@@ -70,17 +72,14 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd, BOOL bWindow)
 	// プレイヤーのテクスチャの読み込み
 	CPlayer::Load();
 
-	// プレイヤーの初期化処理
-	//if (FAILED(m_pPlayer->Init()))
-	//{// 初期化処理が失敗した場合
-	//	return -1;
-	//}
+	// エネミーのテクスチャの読み込み
+	CEnemy::Load();
 
 	// オブジェクトの生成
 	m_pBackground = CBackground::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), SCREEN_WIDTH, SCREEN_HEIGHT); // 背景
-	//CObject2D::Create()->SetPosition(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 3.0f, 0.0f)); // サンプルのテクスチャ(スペースキーの画像)
-	//CObject2D::Create()->SetPosition(D3DXVECTOR3(500.0f, 500.0f, 0.0f));
-	//CObject2D::Create()->SetPosition(D3DXVECTOR3(800.0f, 250.0f, 0.0f));
+
+	m_pEnemy = CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 3.0f, 0.0f), 150.0f, 100.0f); // 敵
+	m_pEnemy = CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 150.0f, 100.0f); // 敵
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 100.0f, 100.0f); // プレイヤー(ランニングマン正面)
 
 	return S_OK;
@@ -104,6 +103,9 @@ void CManager::Uninit(void)
 	CExplosion::Unload();
 
 	// プレイヤーのテクスチャの破棄
+	CPlayer::Unload();
+
+	// エネミーのテクスチャの読み込み
 	CPlayer::Unload();
 
 	// キーボードの破棄
@@ -179,4 +181,12 @@ CPlayer* CManager::GetPlayer(void)
 CBackground* CManager::GetBackground(void)
 {
 	return m_pBackground;
+}
+
+//----------------------------------------
+// エネミーの取得処理
+//----------------------------------------
+CEnemy* CManager::GetEnemy(void)
+{
+	return m_pEnemy;
 }
