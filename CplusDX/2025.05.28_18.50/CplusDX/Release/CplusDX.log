@@ -1,0 +1,21 @@
+﻿  background.cpp
+  bullet.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  main.cpp
+  manager.cpp
+C:\Users\student\source\repos\CplusDX\manager.cpp(152,60): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\source\repos\CplusDX\manager.cpp(152,37): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\source\repos\CplusDX\manager.cpp(157,60): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\source\repos\CplusDX\manager.cpp(157,37): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+  object.cpp
+  object2D.cpp
+  player.cpp
+  renderer.cpp
+  コード生成しています。
+  12 of 122 functions ( 9.8%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
