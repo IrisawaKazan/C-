@@ -9,6 +9,7 @@
 
 #include<windows.h>
 #include<stdio.h>
+#include<stdlib.h>
 #include"d3dx9.h"                    // 描写処理に必要
 #define DIRECTINPUT_VERSION (0x0800) // ビルド時の警告対処用マクロ
 #include"dinput.h"                   // 入力処理に必要

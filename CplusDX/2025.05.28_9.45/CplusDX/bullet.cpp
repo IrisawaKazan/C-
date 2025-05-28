@@ -201,7 +201,7 @@ bool CBullet::CollisionEnemy(D3DXVECTOR3 pos)
 					&& pos.y <= EnemyPos.y + 55.0f)
 				{
 					// ”š”­‚ð¶¬
-					CExplosion::Create(pos, 50.0f, 50.0f);
+					CExplosion::Create(EnemyPos, 50.0f, 50.0f);
 
 					// “G‚ÌI—¹ˆ—
 					pObj->Uninit();

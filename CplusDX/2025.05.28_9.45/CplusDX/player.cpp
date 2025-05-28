@@ -196,8 +196,7 @@ void CPlayer::Update(void)
 	// “G‚ÌÄ¶
 	if (pInputKeyboard->GetTrigger(DIK_R) == true)
 	{
-		CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 3.0f, 0.0f), 150.0f, 100.0f); // “G
-		CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 150.0f, 100.0f); // “G
+		CEnemy::Create(D3DXVECTOR3(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 0.0f), 150.0f, 100.0f); // “G
 	}
 
 	CPlayer::SetPosition(pos);
