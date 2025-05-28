@@ -22,6 +22,7 @@ public:
 
 	static HRESULT Load(void);
 	static void Unload(void);
+
 	static CPlayer* Create(D3DXVECTOR3 pos, float xsize, float ysize);
 
 	HRESULT Init(D3DXVECTOR3 pos);

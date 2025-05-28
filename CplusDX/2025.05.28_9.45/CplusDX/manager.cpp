@@ -79,6 +79,7 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd, BOOL bWindow)
 	m_pBackground = CBackground::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), SCREEN_WIDTH, SCREEN_HEIGHT); // 背景
 	m_pEnemy = CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 3.0f, 0.0f), 150.0f, 100.0f); // 敵
 	m_pEnemy = CEnemy::Create(D3DXVECTOR3(SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 150.0f, 100.0f); // 敵
+
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 100.0f, 100.0f); // プレイヤー(ランニングマン正面)
 
 	return S_OK;
@@ -140,6 +141,17 @@ void CManager::Update(void)
 
 	// レンダラーの更新処理
 	m_pRenderer->Update();
+
+	CInputKeyboard* pInputKeyboard;
+
+	// キーボードの取得
+	pInputKeyboard = CManager::GetInputKeyboard();
+
+	// Rで敵の生成
+	if (pInputKeyboard->GetTrigger(DIK_R) == true)
+	{
+		CEnemy::Create(D3DXVECTOR3(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 0.0f), 150.0f, 100.0f); // 敵
+	}
 }
 
 //----------------------------------------

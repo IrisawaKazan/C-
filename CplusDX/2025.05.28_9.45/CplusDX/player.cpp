@@ -193,11 +193,6 @@ void CPlayer::Update(void)
 	{
 		CBullet::Create(pos, 50.0f, 50.0f);
 	}
-	// “G‚ÌÄ¶
-	if (pInputKeyboard->GetTrigger(DIK_R) == true)
-	{
-		CEnemy::Create(D3DXVECTOR3(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 0.0f), 150.0f, 100.0f); // “G
-	}
 
 	CPlayer::SetPosition(pos);
 

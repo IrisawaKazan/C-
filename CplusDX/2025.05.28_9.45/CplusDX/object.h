@@ -10,7 +10,7 @@
 #include"main.h"
 
 // マクロ定義
-#define MAX_OBJ (256)
+#define MAX_OBJ (512)
 
 // オブジェクトクラス
 class CObject
@@ -21,7 +21,7 @@ public:
 	{
 		TYPE_NONE = 0,
 		TYPE_PLAYER,     // プレイヤー
-		TYPE_ENEMY,      // 敵
+		TYPE_ENEMY,   // 敵
 		TYPE_BULLET,     // 弾
 		TYPE_EXPLOSION,  // 爆発
 		TYPE_BACKGROUND, // 背景
