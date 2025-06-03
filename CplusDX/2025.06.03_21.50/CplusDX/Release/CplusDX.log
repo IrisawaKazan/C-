@@ -1,0 +1,20 @@
+﻿  background.cpp
+  bullet.cpp
+  debugproc.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  main.cpp
+  manager.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+  player.cpp
+  renderer.cpp
+  score.cpp
+  sound.cpp
+  コード生成しています。
+  Compiler switch has changed, fall back to full compilation.
+  All 146 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
