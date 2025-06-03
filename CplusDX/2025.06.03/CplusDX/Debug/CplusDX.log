@@ -1,0 +1,9 @@
+﻿  effect.cpp
+  score.cpp
+C:\Users\student\source\repos\CplusDX\score.cpp(68,60): warning C4100: 'ysize': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\score.cpp(68,47): warning C4100: 'xsize': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\score.cpp(68,36): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\score.cpp(78,34): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\score.cpp(109,38): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  コードを生成中...
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
