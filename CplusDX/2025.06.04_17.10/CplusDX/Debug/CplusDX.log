@@ -1,0 +1,3 @@
+﻿  score.cpp
+C:\Users\student\source\repos\CplusDX\score.cpp(68,51): warning C4100: 'col': 引数は関数の本体部で 1 度も参照されません。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
