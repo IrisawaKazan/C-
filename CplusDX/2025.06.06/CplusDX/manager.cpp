@@ -20,6 +20,7 @@
 #include"object3D.h"
 #include"timer.h"
 #include"objectX.h"
+#include"objectBillboard.h"
 
 // 静的メンバ変数宣言
 CRenderer* CManager::m_pRenderer = NULL;
@@ -119,6 +120,9 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 
 	// オブジェクトX(BOX)の生成(初期配置)
 	CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	// オブジェクトビルボード(木)の生成(初期配置)
+	CObjectBillboard::Create(D3DXVECTOR3(300.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3(50.0f, 50.0f, 0.0f), D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f), 30.0f, 90.0f);
@@ -239,7 +243,7 @@ void CManager::Update(void)
 	// キーボードの取得
 	pInputKeyboard = CManager::GetInputKeyboard();
 
-	float fPosX = (float)(rand() % SCREEN_WIDTH);
+	/*float fPosX = (float)(rand() % SCREEN_WIDTH);
 	float fPosY = (float)(rand() % SCREEN_HEIGHT);
 	
 	// Rで敵000の生成
@@ -267,7 +271,7 @@ void CManager::Update(void)
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
 	{
 		m_pPlayer = CPlayer::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), 100.0f, 100.0f); // プレイヤー
-	}
+	}*/
 
 	// スコア加算(+1)
 	if (pInputKeyboard->GetTrigger(DIK_1) == true)

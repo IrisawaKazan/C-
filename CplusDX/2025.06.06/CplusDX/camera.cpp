@@ -7,6 +7,7 @@
 #include"camera.h"
 #include"manager.h"
 #include"renderer.h"
+#include"input.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -60,7 +61,170 @@ void CCamera::Uninit(void)
 //----------------------------------------
 void CCamera::Update(void)
 {
+	CInputKeyboard* pInputKeyboard;
 
+	// キーボードの取得
+	pInputKeyboard = CManager::GetInputKeyboard();
+
+	// 注視点の旋回
+	if (pInputKeyboard->GetPress(DIK_Q) == true)
+	{
+		m_rot.y -= 0.02f;
+
+		// 角度の正規化
+		if (-D3DX_PI > m_rot.y)
+		{
+			m_rot.y = m_rot.y + D3DX_PI * 2.0f;
+		}
+
+		m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+		m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+	}
+	else if (pInputKeyboard->GetPress(DIK_E) == true)
+	{
+		m_rot.y += 0.02f;
+
+		// 角度の正規化
+		if (D3DX_PI < m_rot.y)
+		{
+			m_rot.y = m_rot.y - D3DX_PI * 2.0f;
+		}
+
+		m_posR.x =m_posV.x + sinf(m_rot.y) * m_fDistance;
+		m_posR.z =m_posV.z + cosf(m_rot.y) * m_fDistance;
+	}
+
+	// 視点の旋回
+	if (pInputKeyboard->GetPress(DIK_Z) == true)
+	{
+		m_rot.y -= 0.02f;
+
+		// 角度の正規化
+		if (-D3DX_PI > m_rot.y)
+		{
+			m_rot.y = m_rot.y + D3DX_PI * 2.0f;
+		}
+
+		m_posV.x = m_posR.x - sinf(m_rot.y) * m_fDistance;
+		m_posV.z = m_posR.z - cosf(m_rot.y) * m_fDistance;
+	}
+	else if (pInputKeyboard->GetPress(DIK_C) == true)
+	{
+		m_rot.y += 0.02f;
+
+		// 角度の正規化
+		if (D3DX_PI < m_rot.y)
+		{
+			m_rot.y = m_rot.y - D3DX_PI * 2.0f;
+		}
+
+		m_posV.x = m_posR.x - sinf(m_rot.y) * m_fDistance;
+		m_posV.z = m_posR.z - cosf(m_rot.y) * m_fDistance;
+	}
+
+	// カメラの移動
+	if (pInputKeyboard->GetPress(DIK_LEFT) == true)
+	{// 左
+		if (pInputKeyboard->GetPress(DIK_UP) == true)
+		{// 左上に移動
+			// 左
+			m_posV.x -= cosf(m_rot.y) * 1.0f;
+			m_posV.z += sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+
+			// 上
+			m_posV.x += sinf(m_rot.y) * 1.0f;
+			m_posV.z += cosf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+		else if (pInputKeyboard->GetPress(DIK_DOWN) == true)
+		{// 左下に移動
+			// 左
+			m_posV.x -= cosf(m_rot.y) * 1.0f;
+			m_posV.z += sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+
+			// 下
+			m_posV.x -= sinf(m_rot.y) * 1.0f;
+			m_posV.z -= cosf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+		else
+		{// 左に移動
+			m_posV.x -= cosf(m_rot.y) * 1.0f;
+			m_posV.z += sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+	}
+	else if (pInputKeyboard->GetPress(DIK_RIGHT) == true)
+	{// 右
+		if (pInputKeyboard->GetPress(DIK_UP) == true)
+		{// 右上に移動
+			// 右
+			m_posV.x += cosf(m_rot.y) * 1.0f;
+			m_posV.z -= sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+
+			// 上
+			m_posV.x += sinf(m_rot.y) * 1.0f;
+			m_posV.z += cosf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+		else if (pInputKeyboard->GetPress(DIK_DOWN) == true)
+		{// 右下に移動
+			// 右
+			m_posV.x += cosf(m_rot.y) * 1.0f;
+			m_posV.z -= sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+
+			// 下
+			m_posV.x -= sinf(m_rot.y) * 1.0f;
+			m_posV.z -= cosf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+		else
+		{// 右に移動
+			m_posV.x += cosf(m_rot.y) * 1.0f;
+			m_posV.z -= sinf(m_rot.y) * 1.0f;
+
+			m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+			m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+		}
+	}
+	else if (pInputKeyboard->GetPress(DIK_UP) == true)
+	{// 上
+		m_posV.x += sinf(m_rot.y) * 1.0f;
+		m_posV.z += cosf(m_rot.y) * 1.0f;
+
+		m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+		m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+	}
+	else if (pInputKeyboard->GetPress(DIK_DOWN) == true)
+	{// 下
+		m_posV.x -= sinf(m_rot.y) * 1.0f;
+		m_posV.z -= cosf(m_rot.y) * 1.0f;
+
+		m_posR.x = m_posV.x + sinf(m_rot.y) * m_fDistance;
+		m_posR.z = m_posV.z + cosf(m_rot.y) * m_fDistance;
+	}
 }
 
 //----------------------------------------
