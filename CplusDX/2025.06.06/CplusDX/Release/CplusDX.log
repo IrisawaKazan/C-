@@ -1,0 +1,24 @@
+﻿  background.cpp
+  bullet.cpp
+  camera.cpp
+  enemy.cpp
+  explosion.cpp
+  floor.cpp
+  light.cpp
+  main.cpp
+  manager.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+  object3D.cpp
+  objectX.cpp
+  player.cpp
+  renderer.cpp
+  score.cpp
+  timer.cpp
+  コード生成しています。
+  13 of 210 functions ( 6.2%) were compiled, the rest were copied from previous compilation.
+    11 functions were new in current compilation
+    40 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
