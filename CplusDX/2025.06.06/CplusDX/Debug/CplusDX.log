@@ -1,2 +1,32 @@
-﻿  manager.cpp
+﻿  background.cpp
+  bullet.cpp
+  camera.cpp
+  enemy.cpp
+  explosion.cpp
+  input.cpp
+  light.cpp
+  main.cpp
+C:\Users\student\source\repos\CplusDX\main.cpp(19,91): warning C4100: 'lpCmdLine': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\main.cpp(19,65): warning C4100: 'hinstancePrev': 引数は関数の本体部で 1 度も参照されません。
+  manager.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+C:\Users\student\source\repos\CplusDX\object2D.cpp(61,37): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\object2D.cpp(222,51): warning C4100: 'texposy': 引数は関数の本体部で 1 度も参照されません。
+  object3D.cpp
+C:\Users\student\source\repos\CplusDX\object3D.cpp(53,37): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  objectBillboard.cpp
+C:\Users\student\source\repos\CplusDX\objectBillboard.cpp(58,44): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  objectX.cpp
+C:\Users\student\source\repos\CplusDX\objectX.cpp(55,36): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  player.cpp
+  renderer.cpp
+  score.cpp
+C:\Users\student\source\repos\CplusDX\score.cpp(68,51): warning C4100: 'col': 引数は関数の本体部で 1 度も参照されません。
+  sound.cpp
+  timer.cpp
+C:\Users\student\source\repos\CplusDX\timer.cpp(19,20): warning C4100: 'nPriority': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\timer.cpp(68,51): warning C4100: 'col': 引数は関数の本体部で 1 度も参照されません。
+  コードを生成中...
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe

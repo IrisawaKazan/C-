@@ -17,7 +17,7 @@ public:
 	CObjectBillboard(int nPriority = 3);
 	~CObjectBillboard();
 
-	static CObjectBillboard* Create(D3DXVECTOR3 pos);
+	static CObjectBillboard* Create(D3DXVECTOR3 pos, float fWidth, float fHeight);
 
 	HRESULT Init(D3DXVECTOR3 pos);
 	void Uninit(void);
@@ -34,6 +34,8 @@ private:
 	D3DXVECTOR3 m_pos;     // 位置
 	D3DXVECTOR3 m_rot;     // 向き
 	D3DXMATRIX m_mtxWorld; // ワールドマトリックス
+	float m_fWidth;
+	float m_fHeight;
 };
 
 #endif

@@ -17,7 +17,9 @@ CObjectBillboard::CObjectBillboard(int nPriority) : CObject(nPriority)
 	m_pVtxBuff = nullptr;
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_mtxWorld = D3DXMATRIX();
+	m_mtxWorld = {};
+	m_fWidth = 0.0f;
+	m_fHeight = 0.0f;
 }
 
 //----------------------------------------
@@ -31,18 +33,21 @@ CObjectBillboard::~CObjectBillboard()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CObjectBillboard* CObjectBillboard::Create(D3DXVECTOR3 pos)
+CObjectBillboard* CObjectBillboard::Create(D3DXVECTOR3 pos, float fWidth, float fHeight)
 {
 	CObjectBillboard* pObjectBillboard;
 
 	// オブジェクト3Dの生成
 	pObjectBillboard = new CObjectBillboard;
 
+	// 位置の設定
+	pObjectBillboard->m_pos = pos;
+
+	pObjectBillboard->m_fWidth = fWidth;
+	pObjectBillboard->m_fHeight = fHeight;
+
 	// 初期化処理
 	pObjectBillboard->Init(pos);
-
-	// 位置の設定
-	pObjectBillboard->SetPosition(pos);
 
 	return pObjectBillboard;
 }
@@ -55,8 +60,8 @@ HRESULT CObjectBillboard::Init(D3DXVECTOR3 pos)
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	//m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	//m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	// テクスチャの読み込み
 	D3DXCreateTextureFromFile(pDevice,
@@ -76,10 +81,10 @@ HRESULT CObjectBillboard::Init(D3DXVECTOR3 pos)
 	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
 
 	// 頂点座標の設定
-	pVtx[0].pos = D3DXVECTOR3(-75.0f, 75.0f, 0.0f);
-	pVtx[1].pos = D3DXVECTOR3(75.0f, 75.0f, 0.0f);
-	pVtx[2].pos = D3DXVECTOR3(-75.0f, -75.0f, 0.0f);
-	pVtx[3].pos = D3DXVECTOR3(75.0f, -75.0f, 0.0f);
+	pVtx[0].pos = D3DXVECTOR3(m_pos.x - m_fWidth, m_pos.y + m_fHeight, m_pos.z);
+	pVtx[1].pos = D3DXVECTOR3(m_pos.x + m_fWidth, m_pos.y + m_fHeight, m_pos.z);
+	pVtx[2].pos = D3DXVECTOR3(m_pos.x - m_fWidth, m_pos.y - m_fHeight, m_pos.z);
+	pVtx[3].pos = D3DXVECTOR3(m_pos.x + m_fWidth, m_pos.y - m_fHeight, m_pos.z);
 
 	// 各頂点の法線の設定
 	pVtx[0].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
@@ -146,6 +151,10 @@ void CObjectBillboard::Draw(void)
 	// ライトを無効にする
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
+	// Zテスト
+	pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_ALWAYS);
+	pDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+
 	// 計算用のマトリックス
 	D3DXMATRIX mtxTrans, mtxView;
 	pDevice->GetTransform(D3DTS_VIEW, &mtxView);
@@ -153,7 +162,7 @@ void CObjectBillboard::Draw(void)
 	// ワールドマトリックスの初期化
 	D3DXMatrixIdentity(&m_mtxWorld);
 
-	//カメラの逆行列を設定
+	// カメラの逆行列を設定
 	m_mtxWorld._11 = mtxView._11;
 	m_mtxWorld._12 = mtxView._21;
 	m_mtxWorld._13 = mtxView._31;
@@ -164,28 +173,32 @@ void CObjectBillboard::Draw(void)
 	m_mtxWorld._32 = mtxView._23;
 	m_mtxWorld._33 = mtxView._33;
 
-	//位置を反映
+	// 位置を反映
 	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
 	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
 
-	//ワールドマトリックスの設定
+	// ワールドマトリックスの設定
 	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 
-	//頂点バッファをデバイスのデータストリームに設定
+	// 頂点バッファをデバイスのデータストリームに設定
 	pDevice->SetStreamSource(0, m_pVtxBuff, 0, sizeof(VERTEX_3D));
 
-	//テクスチャフォーマットの設定
+	// テクスチャフォーマットの設定
 	pDevice->SetFVF(FVF_VERTEX_3D);
 
-	//テクスチャの設定
+	// テクスチャの設定
 	pDevice->SetTexture(0, m_pTexture);
 
-	//ポリゴンの描画
+	// ポリゴンの描画
 	pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP,
-		4,
+		0,
 		2);
 
-	//ライトを有効にする
+	// Zテスト
+	pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+	pDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
+	// ライトを有効にする
 	pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
 }
 

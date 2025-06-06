@@ -122,7 +122,7 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// オブジェクトビルボード(木)の生成(初期配置)
-	CObjectBillboard::Create(D3DXVECTOR3(300.0f, 0.0f, 0.0f));
+	CObjectBillboard::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), 50.0f, 50.0f);
 
 	// スコア
 	CScore::Create(D3DXVECTOR3(50.0f, 50.0f, 0.0f), D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f), 30.0f, 90.0f);
