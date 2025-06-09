@@ -120,17 +120,17 @@ HRESULT CObjectBillboard::Init(D3DXVECTOR3 pos)
 void CObjectBillboard::Uninit(void)
 {
 	// テクスチャの破棄
-	if (m_pTexture != NULL)
+	if (m_pTexture != nullptr)
 	{
 		m_pTexture->Release();
-		m_pTexture = NULL;
+		m_pTexture = nullptr;
 	}
 
 	// 頂点バッファの解放
-	if (m_pVtxBuff != NULL)
+	if (m_pVtxBuff != nullptr)
 	{
 		m_pVtxBuff->Release();
-		m_pVtxBuff = NULL;
+		m_pVtxBuff = nullptr;
 	}
 
 	CObject::Release();

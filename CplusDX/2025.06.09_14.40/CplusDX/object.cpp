@@ -53,7 +53,7 @@ void CObject::ReleaseAll(void)
 	{
 		for (int nCntObj = 0; nCntObj < MAX_OBJ; nCntObj++)
 		{
-			if (m_apObject[nCntPri][nCntObj] != NULL)
+			if (m_apObject[nCntPri][nCntObj] != nullptr)
 			{
 				// 終了処理
 				m_apObject[nCntPri][nCntObj]->Uninit();
@@ -71,7 +71,7 @@ void CObject::UpdateAll(void)
 	{
 		for (int nCntObj = 0; nCntObj < MAX_OBJ; nCntObj++)
 		{
-			if (m_apObject[nCntPri][nCntObj] != NULL)
+			if (m_apObject[nCntPri][nCntObj] != nullptr)
 			{
 				// 更新処理
 				m_apObject[nCntPri][nCntObj]->Update();
@@ -94,7 +94,7 @@ void CObject::DrawAll(void)
 	{
 		for (int nCntObj = 0; nCntObj < MAX_OBJ; nCntObj++)
 		{
-			if (m_apObject[nCntPri][nCntObj] != NULL)
+			if (m_apObject[nCntPri][nCntObj] != nullptr)
 			{
 				// 描画処理
 				m_apObject[nCntPri][nCntObj]->Draw();
@@ -143,10 +143,10 @@ void CObject::Release(void)
 	int nPri = this->m_nPriority;
 	int nIdx = this->m_nID;
 
-	if (m_apObject[nPri][nIdx] != NULL)
+	if (m_apObject[nPri][nIdx] != nullptr)
 	{
 		delete m_apObject[nPri][nIdx];
-		m_apObject[nPri][nIdx] = NULL;
+		m_apObject[nPri][nIdx] = nullptr;
 
 		m_nNumAll--; // 総数をカウントダウン
 	}

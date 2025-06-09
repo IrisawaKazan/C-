@@ -55,10 +55,10 @@ HRESULT CScore::Load(void)
 void CScore::Unload(void)
 {
 	// テクスチャの破棄
-	if (m_pTexture != NULL)
+	if (m_pTexture != nullptr)
 	{
 		m_pTexture->Release();
-		m_pTexture = NULL;
+		m_pTexture = nullptr;
 	}
 }
 
@@ -67,7 +67,7 @@ void CScore::Unload(void)
 //----------------------------------------
 CScore* CScore::Create(D3DXVECTOR3 pos, D3DXCOLOR col, float xsize, float ysize)
 {
-	CScore* pScore = NULL;
+	CScore* pScore = nullptr;
 
 	// スコアの生成
 	pScore = new CScore;
@@ -132,7 +132,7 @@ void CScore::Update(void)
 {
 	//for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
 	//{
-	//	if (m_apNumber[nCnt] != NULL)
+	//	if (m_apNumber[nCnt] != nullptr)
 	//	{
 	//		m_apNumber[nCnt]->SetDigit(nCnt);
 	//	}
@@ -146,7 +146,7 @@ void CScore::Draw(void)
 {
 	for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
 	{
-		if (m_apNumber[nCnt] != NULL)
+		if (m_apNumber[nCnt] != nullptr)
 		{
 			m_apNumber[nCnt]->Draw();
 		}

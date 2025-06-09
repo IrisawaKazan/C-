@@ -99,17 +99,17 @@ HRESULT CObjectX::Init(D3DXVECTOR3 pos)
 void CObjectX::Uninit(void)
 {
 	// メッシュの破棄
-	if (m_pMesh != NULL)
+	if (m_pMesh != nullptr)
 	{
 		m_pMesh->Release();
-		m_pMesh = NULL;
+		m_pMesh = nullptr;
 	}
 
 	// マテリアルの破棄
-	if (m_pBuffMat != NULL)
+	if (m_pBuffMat != nullptr)
 	{
 		m_pBuffMat->Release();
-		m_pBuffMat = NULL;
+		m_pBuffMat = nullptr;
 	}
 
 	CObject::Release();

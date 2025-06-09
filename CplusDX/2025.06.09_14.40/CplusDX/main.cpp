@@ -24,7 +24,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 	// メモリリーク検知
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF);
 
-	CManager* pManager = NULL;
+	CManager* pManager = nullptr;
 
 	DWORD dwCurrentTime;
 	DWORD dwExecLastTime;
@@ -134,14 +134,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 	}
 	
 	// レンダラーの破棄
-	if (pManager != NULL)
+	if (pManager != nullptr)
 	{
 		// 終了処理
 		pManager->Uninit();
 
 		delete pManager;
 
-		pManager = NULL;
+		pManager = nullptr;
 	}
 
 	// ウィンドウクラスの登録を解除

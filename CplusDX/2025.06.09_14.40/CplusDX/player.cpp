@@ -11,7 +11,7 @@
 #include"bullet.h"
 
 // 静的メンバ変数宣言
-LPDIRECT3DTEXTURE9 CPlayer::m_pTexture = NULL;
+LPDIRECT3DTEXTURE9 CPlayer::m_pTexture = nullptr;
 
 //----------------------------------------
 // プレイヤーのコンストラクタ
@@ -51,10 +51,10 @@ HRESULT CPlayer::Load(void)
 void CPlayer::Unload(void)
 {
 	// テクスチャの破棄
-	if (m_pTexture != NULL)
+	if (m_pTexture != nullptr)
 	{
 		m_pTexture->Release();
-		m_pTexture = NULL;
+		m_pTexture = nullptr;
 	}
 }
 

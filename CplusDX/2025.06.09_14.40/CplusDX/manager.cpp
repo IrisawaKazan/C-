@@ -180,69 +180,69 @@ void CManager::Uninit(void)
 	CTimer::Unload();
 
 	// キーボードの破棄
-	if (m_pInputKeyboard != NULL)
+	if (m_pInputKeyboard != nullptr)
 	{
 		// 終了処理
 		m_pInputKeyboard->Uninit();
 
 		delete m_pInputKeyboard;
 
-		m_pInputKeyboard = NULL;
+		m_pInputKeyboard = nullptr;
 	}
 
 	// レンダラーの破棄
-	if (m_pRenderer != NULL)
+	if (m_pRenderer != nullptr)
 	{
 		// 終了処理
 		m_pRenderer->Uninit();
 
 		delete m_pRenderer;
 
-		m_pRenderer = NULL;
+		m_pRenderer = nullptr;
 	}
 
 	// サウンドの破棄
-	if (m_pSound != NULL)
+	if (m_pSound != nullptr)
 	{
 		// 終了処理
 		m_pSound->Uninit();
 
 		delete m_pSound;
 
-		m_pSound = NULL;
+		m_pSound = nullptr;
 	}
 
 	// カメラの破棄
-	if (m_pCamera != NULL)
+	if (m_pCamera != nullptr)
 	{
 		// 終了処理
 		m_pCamera->Uninit();
 
 		delete m_pCamera;
 
-		m_pCamera = NULL;
+		m_pCamera = nullptr;
 	}
 
 	// ライトの破棄
-	if (m_pLight != NULL)
+	if (m_pLight != nullptr)
 	{
 		// 終了処理
 		m_pLight->Uninit();
 
 		delete m_pLight;
 
-		m_pLight = NULL;
+		m_pLight = nullptr;
 	}
 
 	// デバッグの破棄
-	if (m_pDebugProc != NULL)
+	if (m_pDebugProc != nullptr)
 	{
 		// 終了処理
 		m_pDebugProc->Uninit();
 
 		delete m_pDebugProc;
 
-		m_pDebugProc = NULL;
+		m_pDebugProc = nullptr;
 	}
 }
 

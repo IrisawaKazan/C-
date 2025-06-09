@@ -20,10 +20,10 @@ LPDIRECT3DTEXTURE9 CEnemy::m_pTexture[ETYPE_MAX] = {};
 CEnemy::CEnemy(int nPriority) : CObject2D(nPriority)
 {
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_nLife = 0;
+	m_nLife = NULL;
 	m_type = ETYPE_NONE;
-	m_nCntTimer = 0;
-	m_nShotCnt = 0;
+	m_nCntTimer = NULL;
+	m_nShotCnt = NULL;
 }
 
 //----------------------------------------
@@ -73,10 +73,10 @@ void CEnemy::Unload(void)
 	for (int nCount = 0; nCount < ETYPE_MAX; nCount++)
 	{
 		// テクスチャの破棄
-		if (m_pTexture[nCount] != NULL)
+		if (m_pTexture[nCount] != nullptr)
 		{
 			m_pTexture[nCount]->Release();
-			m_pTexture[nCount] = NULL;
+			m_pTexture[nCount] = nullptr;
 		}
 	}
 }

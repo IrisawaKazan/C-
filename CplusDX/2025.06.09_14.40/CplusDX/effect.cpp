@@ -52,10 +52,10 @@ HRESULT CEffect::Load(void)
 void CEffect::Unload(void)
 {
 	// テクスチャの破棄
-	if (m_pTexture != NULL)
+	if (m_pTexture != nullptr)
 	{
 		m_pTexture->Release();
-		m_pTexture = NULL;
+		m_pTexture = nullptr;
 	}
 }
 

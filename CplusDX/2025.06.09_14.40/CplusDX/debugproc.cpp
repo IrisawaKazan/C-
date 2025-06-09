@@ -51,10 +51,10 @@ void CDebugProc::Init(void)
 void CDebugProc::Uninit(void)
 {
 	// デバッグ表示用フォントの破棄
-	if (m_pFont != NULL)
+	if (m_pFont != nullptr)
 	{
 		m_pFont->Release();
-		m_pFont = NULL;
+		m_pFont = nullptr;
 	}
 }
 

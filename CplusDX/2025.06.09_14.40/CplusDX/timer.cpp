@@ -55,10 +55,10 @@ HRESULT CTimer::Load(void)
 void CTimer::Unload(void)
 {
 	// テクスチャの破棄
-	if (m_pTexture != NULL)
+	if (m_pTexture != nullptr)
 	{
 		m_pTexture->Release();
-		m_pTexture = NULL;
+		m_pTexture = nullptr;
 	}
 }
 
@@ -115,7 +115,7 @@ void CTimer::Uninit(void)
 {
 	for (int nCnt = 0; nCnt < MAX_TIMER; nCnt++)
 	{
-		if (m_apNumber[nCnt] != NULL)
+		if (m_apNumber[nCnt] != nullptr)
 		{
 			m_apNumber[nCnt]->Uninit();
 
@@ -142,7 +142,7 @@ void CTimer::Draw(void)
 {
 	for (int nCnt = 0; nCnt < MAX_TIMER; nCnt++)
 	{
-		if (m_apNumber[nCnt] != NULL)
+		if (m_apNumber[nCnt] != nullptr)
 		{
 			m_apNumber[nCnt]->Draw();
 		}

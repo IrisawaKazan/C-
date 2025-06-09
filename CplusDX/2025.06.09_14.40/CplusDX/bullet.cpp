@@ -139,6 +139,7 @@ void CBullet::Update(void)
 	// 位置の取得
 	D3DXVECTOR3 pos = GetPos();
 
+	// エフェクトの呼び出し
 	CEffect::Create(pos, D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f), 40, 15, 25.0f, 25.0f);
 
 	// 寿命のカウントダウン

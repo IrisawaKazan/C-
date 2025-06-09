@@ -39,7 +39,7 @@ HRESULT CRenderer::Init(HWND hWnd, BOOL bWindow)
 	// Direct3Dオブジェクト作成
 	m_pD3D = Direct3DCreate9(D3D_SDK_VERSION);
 
-	if (m_pD3D == NULL)
+	if (m_pD3D == nullptr)
 	{
 		return E_FAIL;
 	}
@@ -105,17 +105,17 @@ void CRenderer::Uninit(void)
 	CObject::ReleaseAll();
 
 	// Direct3Dデバイスの破棄
-	if (m_pD3DDevice != NULL)
+	if (m_pD3DDevice != nullptr)
 	{
 		m_pD3DDevice->Release();
-		m_pD3DDevice = NULL;
+		m_pD3DDevice = nullptr;
 	}
 
 	// Direct3Dオブジェクトの破棄
-	if (m_pD3D != NULL)
+	if (m_pD3D != nullptr)
 	{
 		m_pD3D->Release();
-		m_pD3D = NULL;
+		m_pD3D = nullptr;
 	}
 }
 

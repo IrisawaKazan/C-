@@ -66,10 +66,10 @@ void CExplosion::Unload(void)
 	for (int nCount = 0; nCount < EXPLOTYPE_MAX; nCount++)
 	{
 		// テクスチャの破棄
-		if (m_pTexture[nCount] != NULL)
+		if (m_pTexture[nCount] != nullptr)
 		{
 			m_pTexture[nCount]->Release();
-			m_pTexture[nCount] = NULL;
+			m_pTexture[nCount] = nullptr;
 		}
 	}
 }
