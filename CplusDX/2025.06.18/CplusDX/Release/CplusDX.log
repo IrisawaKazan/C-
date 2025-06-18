@@ -1,0 +1,33 @@
+﻿  background.cpp
+  bullet.cpp
+  camera.cpp
+  debugproc.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  fade.cpp
+  light.cpp
+  main.cpp
+  manager.cpp
+  model.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+  object3D.cpp
+  objectBillboard.cpp
+  objectX.cpp
+  pause.cpp
+  player.cpp
+  コンパイル中...
+  playerX.cpp
+  renderer.cpp
+  score.cpp
+  shadow.cpp
+  sphereX.cpp
+  timer.cpp
+  titlemanager.cpp
+  コード生成しています。
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 266 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
