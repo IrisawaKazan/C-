@@ -126,7 +126,7 @@ void CObjectX::Update(void)
 	pInputKeyboard = CManager::GetInputKeyboard();
 
 	// プレイヤー移動
-	if (pInputKeyboard->GetPress(DIK_A) == true)
+	/*if (pInputKeyboard->GetPress(DIK_A) == true)
 	{// 左
 		if (pInputKeyboard->GetPress(DIK_W) == true)
 		{// 左奥に移動
@@ -191,7 +191,7 @@ void CObjectX::Update(void)
 	{// 手前
 		m_pos.z -= MAX_PMOVE;
 		m_rot.y = m_rot.y;
-	}
+	}*/
 
 	// 上に進む
 	if (pInputKeyboard->GetPress(DIK_SPACE) == true)
