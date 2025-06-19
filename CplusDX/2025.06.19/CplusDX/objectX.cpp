@@ -22,8 +22,7 @@ CObjectX::CObjectX(int nPriority) : CObject(nPriority)
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_mtxWorld = D3DXMATRIX();
 
-	m_nCounterRotation = NULL;
-	m_nPatternRotation = NULL;
+	m_nRotation = NULL;
 }
 
 //----------------------------------------
@@ -210,13 +209,9 @@ void CObjectX::Update(void)
 	}
 
 	// ローテーション
-	m_nCounterRotation++;
+	m_nRotation += 1;
 
-	m_nCounterRotation = 0;
-
-	m_nPatternRotation = (m_nPatternRotation + 1);
-
-	m_rot = D3DXVECTOR3(0.0f, m_nPatternRotation / 20.0f/* 回る速度 */, 0.0f);
+	m_rot = D3DXVECTOR3(0.0f, m_nRotation / 200.0f/* 回る速度 */, 0.0f);
 }
 
 //----------------------------------------

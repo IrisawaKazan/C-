@@ -40,8 +40,7 @@ private:
 	D3DXVECTOR3 m_rot;       // 向き
 	D3DXMATRIX m_mtxWorld;   // ワールドマトリックス
 
-	int m_nCounterRotation; // ローテーションカウンター
-	int m_nPatternRotation; // ローテーションパターン
+	int m_nRotation; // ローテーション
 };
 
 #endif
