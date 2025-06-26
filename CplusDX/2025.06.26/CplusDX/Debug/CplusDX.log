@@ -1,0 +1,6 @@
+﻿  manager.cpp
+C:\Users\student\source\repos\CplusDX\manager.cpp(326,13): warning C4244: '引数': 'time_t' から 'unsigned int' への変換です。データが失われる可能性があります。
+  scrapX.cpp
+C:\Users\student\source\repos\CplusDX\scrapX.cpp(72,34): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  コードを生成中...
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
