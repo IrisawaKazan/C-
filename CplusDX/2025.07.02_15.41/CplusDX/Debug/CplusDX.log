@@ -1,0 +1,50 @@
+﻿  background.cpp
+  bgX.cpp
+C:\Users\student\source\repos\CplusDX\bgX.cpp(57,40): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  bullet.cpp
+  camera.cpp
+  deadzoneX.cpp
+C:\Users\student\source\repos\CplusDX\deadzoneX.cpp(70,38): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  debrisX.cpp
+C:\Users\student\source\repos\CplusDX\debrisX.cpp(72,36): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  debugproc.cpp
+  effect.cpp
+  enemy.cpp
+  explosion.cpp
+  fade.cpp
+  light.cpp
+  main.cpp
+C:\Users\student\source\repos\CplusDX\main.cpp(22,91): warning C4100: 'lpCmdLine': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\main.cpp(22,65): warning C4100: 'hinstancePrev': 引数は関数の本体部で 1 度も参照されません。
+  manager.cpp
+C:\Users\student\source\repos\CplusDX\manager.cpp(300,13): warning C4244: '引数': 'time_t' から 'unsigned int' への変換です。データが失われる可能性があります。
+  model.cpp
+C:\Users\student\source\repos\CplusDX\model.cpp(53,34): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  number.cpp
+  object.cpp
+  object2D.cpp
+C:\Users\student\source\repos\CplusDX\object2D.cpp(61,37): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\object2D.cpp(248,51): warning C4100: 'texposy': 引数は関数の本体部で 1 度も参照されません。
+  object3D.cpp
+C:\Users\student\source\repos\CplusDX\object3D.cpp(53,37): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  objectBillboard.cpp
+C:\Users\student\source\repos\CplusDX\objectBillboard.cpp(58,44): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  コードを生成中...
+  コンパイル中...
+  objectX.cpp
+C:\Users\student\source\repos\CplusDX\objectX.cpp(67,36): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  pause.cpp
+C:\Users\student\source\repos\CplusDX\pause.cpp(18,20): warning C4100: 'nPriority': 引数は関数の本体部で 1 度も参照されません。
+  player.cpp
+  playerX.cpp
+  renderer.cpp
+C:\Users\student\source\repos\CplusDX\renderer.cpp(312,8): warning C4101: 'fAspect': ローカル変数は 1 度も使われていません。
+  score.cpp
+C:\Users\student\source\repos\CplusDX\score.cpp(68,51): warning C4100: 'col': 引数は関数の本体部で 1 度も参照されません。
+  scrapX.cpp
+C:\Users\student\source\repos\CplusDX\scrapX.cpp(71,34): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  timer.cpp
+C:\Users\student\source\repos\CplusDX\timer.cpp(19,20): warning C4100: 'nPriority': 引数は関数の本体部で 1 度も参照されません。
+C:\Users\student\source\repos\CplusDX\timer.cpp(68,51): warning C4100: 'col': 引数は関数の本体部で 1 度も参照されません。
+  コードを生成中...
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
