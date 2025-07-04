@@ -1,0 +1,5 @@
+﻿  renderer.cpp
+C:\Users\student\source\repos\CplusDX\renderer.cpp(430,8): warning C4101: 'fAspect': ローカル変数は 1 度も使われていません。
+C:\Users\student\source\repos\CplusDX\renderer.cpp(472): warning C4702: 制御が渡らないコードです。
+C:\Users\student\source\repos\CplusDX\renderer.cpp(476): warning C4715: 'CRenderer::GetTextureMT': 値を返さないコントロール パスがあります。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
