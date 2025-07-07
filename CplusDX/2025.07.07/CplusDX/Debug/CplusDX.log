@@ -1,0 +1,3 @@
+﻿  stardustX.cpp
+C:\Users\student\source\repos\CplusDX\stardustX.cpp(72,38): warning C4100: 'pos': 引数は関数の本体部で 1 度も参照されません。
+  CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
