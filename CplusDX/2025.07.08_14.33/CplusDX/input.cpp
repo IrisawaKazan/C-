@@ -162,7 +162,11 @@ bool CInputKeyboard::GetTrigger(int nKey)
 //----------------------------------------
 CInputMouse::CInputMouse()
 {
-
+	m_MauseState = NULL;
+	m_OldMauseState = NULL;
+	m_CurrentMouseState = DIMOUSESTATE();
+	m_PrevMouseState = DIMOUSESTATE();
+	m_OldMousepos = DIMOUSESTATE();
 }
 
 //----------------------------------------
@@ -230,7 +234,36 @@ void CInputMouse::Uninit(void)
 //----------------------------------------
 void CInputMouse::Update(void)
 {
+	m_OldMousepos = m_CurrentMouseState;
 
+	// 最新のマウス情報を保存する
+	m_PrevMouseState = m_CurrentMouseState;
+
+	// 最新のマウスの状態を更新
+	HRESULT	hresult = m_pDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentMouseState);
+
+	if (FAILED(hresult))
+	{
+		m_pDevice->Acquire();
+		hresult = m_pDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentMouseState);
+	}
+
+	POINT point;
+
+	GetCursorPos(&point);
+
+	ScreenToClient(FindWindowA(CLASS_NAME, nullptr), &point);
+
+	m_CurrentMouseState.lX = point.x;
+	m_CurrentMouseState.lY = point.y;
+}
+
+//----------------------------------------
+// マウスのプレス情報取得処理
+//----------------------------------------
+bool CInputMouse::Press(MOUSE type)
+{
+	return (m_PrevMouseState.rgbButtons[type] & 0x80) ? true : false;
 }
 
 //----------------------------------------
@@ -238,6 +271,12 @@ void CInputMouse::Update(void)
 //----------------------------------------
 bool CInputMouse::Push(MOUSE type)
 {
+	if (!(m_PrevMouseState.rgbButtons[type] & (0x80)) &&
+		m_CurrentMouseState.rgbButtons[type] & (0x80))
+	{
+		return true;
+	}
+
 	return false;
 }
 
@@ -246,6 +285,12 @@ bool CInputMouse::Push(MOUSE type)
 //----------------------------------------
 bool CInputMouse::Release(MOUSE type)
 {
+	if (m_PrevMouseState.rgbButtons[type] & 0x80 &&
+		!(m_CurrentMouseState.rgbButtons[type] & 0x80))
+	{
+		return true;
+	}
+
 	return false;
 }
 

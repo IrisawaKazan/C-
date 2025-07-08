@@ -208,10 +208,10 @@ void CObjectX::Update(void)
 		// キーボードの取得
 		pInputKeyboard = CManager::GetInputKeyboard();
 
-		//CInputMouse* pInputMouse;
+		CInputMouse* pInputMouse;
 
-		//// マウスの取得
-		//pInputMouse = CManager::GetInputMouse();
+		// マウスの取得
+		pInputMouse = CManager::GetInputMouse();
 
 		CInputJoypad* pInputJoypad;
 
@@ -235,7 +235,7 @@ void CObjectX::Update(void)
 
 		// プレイヤー移動
 		// 上に進む + 動くとポイントがたまりやすいシステム
-		if (pInputKeyboard->GetPress(DIK_SPACE) || pInputJoypad->GetJoypadPress(pInputJoypad->JOYKEY_A) == true)
+		if (pInputKeyboard->GetPress(DIK_SPACE) || pInputJoypad->GetJoypadPress(pInputJoypad->JOYKEY_A) || pInputMouse->Press(pInputMouse->MOUSE_LEFTBUTTON) == true)
 		{// 奥
 			m_pos.z += MAX_PMOVE * 3.5f;
 

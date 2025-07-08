@@ -71,12 +71,19 @@ public:
 	void Uninit(void);
 	void Update(void);
 
+	bool Press(MOUSE type);
 	bool Push(MOUSE type);
 	bool Release(MOUSE type);
 
+	D3DXVECTOR2 GetVelocity() { return D3DXVECTOR2((float)m_CurrentMouseState.lX, (float)m_CurrentMouseState.lY); }
+	D3DXVECTOR2 GetVelocityOld() { return D3DXVECTOR2((float)m_OldMousepos.lX, (float)m_OldMousepos.lY); }
 
 private:
-
+	BYTE m_MauseState;
+	BYTE m_OldMauseState;
+	DIMOUSESTATE m_CurrentMouseState;
+	DIMOUSESTATE m_PrevMouseState;
+	DIMOUSESTATE m_OldMousepos;
 };
 
 // ジョイパッドクラス

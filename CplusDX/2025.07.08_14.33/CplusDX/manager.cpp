@@ -451,6 +451,12 @@ void CManager::Update(void)
 			m_pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLESE);
 		}
 	}
+
+	if (pInputJoypad->GetJoypadTrigger(pInputJoypad->JOYKEY_BACK) == true)
+	{
+		// ウィンドウを閉じる
+		PostQuitMessage(0);
+	}
 }
 
 //----------------------------------------

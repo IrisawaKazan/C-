@@ -9,6 +9,7 @@
 #include"object.h"
 #include"object2D.h"
 #include"manager.h"
+#include"input.h"
 
 // プロトタイプ宣言
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM IParam);
@@ -155,6 +156,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hinstancePrev, _
 //----------------------------------------
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM IParam)
 {
+	CInputJoypad* pInputJoypad;
+
+	// パッドの取得
+	pInputJoypad = CManager::GetInputJoypad();
+
 	switch (uMsg)
 	{
 	case WM_DESTROY:
