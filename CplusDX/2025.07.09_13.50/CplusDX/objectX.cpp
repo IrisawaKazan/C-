@@ -282,24 +282,24 @@ void CObjectX::Update(void)
 			m_nPowerUpCounter = 0;
 
 			// アイテム使用
-			if (pInputKeyboard->GetTrigger(DIK_Q) == true)
+			if (pInputKeyboard->GetTrigger(DIK_Q) == true || pInputJoypad->GetPress(pInputJoypad->JOYKEY_X) || pInputMouse->GetPress(pInputMouse->MOUSE_WHEELBUTTON) == true)
 			{
 				m_bPowerUp = true;
 
 				if (m_bPowerUp == true)
 				{
-					/* 10秒間になってない */
+					/* 10秒間になってない 関数ではなく直に書いたらできるかも */
 					// 敵に当たったら倒せる処理(10秒間)
 					PowerUpCollision();
 				}
 			}
 
 			// アイテム使用
-			if (pInputKeyboard->GetTrigger(DIK_B) == true)
+			if (pInputKeyboard->GetTrigger(DIK_B) == true || pInputJoypad->GetPress(pInputJoypad->JOYKEY_Y) || pInputMouse->GetPress(pInputMouse->MOUSE_RIGHTBUTTON) == true)
 			{
 				m_bRetention = false; // ↓の関数に呼び出したほうがいいかも
 
-				/* 画面内の敵一掃(敵がbUse = falseになったら一つにつき10～50, 100スコア) (関数呼び出し) */
+				/* 画面内の敵一掃(敵がbUse = falseになったら一つにつき10～50, 100スコア) (関数呼び出し or 直書き) */
 			}
 		}
 	}

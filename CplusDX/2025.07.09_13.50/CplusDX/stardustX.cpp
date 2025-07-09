@@ -358,7 +358,7 @@ void CStardustX::Collision(void)
 
 		// ¶‰E‚Ì‚ß‚èž‚Ý”»’è
 		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
-			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z/* * 2.0f*/)
+			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * 2.0f)
 		{
 			// ¶‚©‚ç‰E‚Ö
   			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&

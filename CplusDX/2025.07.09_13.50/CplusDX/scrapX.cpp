@@ -356,8 +356,8 @@ void CScrap::Collision(void)
 		D3DXVECTOR3 size = pObjectX->GetSize();
 
 		// 左右のめり込み判定
-		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
-			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z/* * 2.0f*/)
+		if (pos.z + size.z / (fNum + 50.0f) > m_pos.z + m_vtxMax.z &&
+			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * 2.0f)
 		{
 			// 左から右へ
 			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
@@ -389,7 +389,7 @@ void CScrap::Collision(void)
 
 		// 左右のめり込み判定
 		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
-			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z/* * 2.0f*/)
+			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * 2.0f)
 		{
 			// 左から右へ
 			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
