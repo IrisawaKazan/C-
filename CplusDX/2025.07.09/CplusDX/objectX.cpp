@@ -279,6 +279,8 @@ void CObjectX::Update(void)
 		{
 			/* 見た目でわかる何か */
 
+			m_nPowerUpCounter = 0;
+
 			// アイテム使用
 			if (pInputKeyboard->GetTrigger(DIK_Q) == true)
 			{
@@ -504,20 +506,17 @@ bool CObjectX::GetPowerUp(void)
 //----------------------------------------
 void CObjectX::PowerUpCollision(void)
 {
+	/* 見た目でわかる何か */
+
 	m_bRetention = false;
 
-	if (m_bPowerUp == true)
-	{
-		// パワーアップ時間の管理
-		m_nPowerUpCounter++;
-	}
+	// パワーアップ時間の管理
+	m_nPowerUpCounter++;
 
 	/* 10秒間になってない */
 	// 10秒間
 	if (m_nPowerUpCounter >= 600)
 	{
-		m_nPowerUpCounter = 0;
-
 		m_bPowerUp = false;
 	}
 }

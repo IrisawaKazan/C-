@@ -343,7 +343,8 @@ void CScrap::Collision(void)
 	// 左右の判定の広さ
 	float fNum = 2.0f;
 
-	if (pObjectX->GetEnable() == true)
+	// プレイヤーが使われている且つパワーアップ状態でない
+	if (pObjectX->GetEnable() == true && pObjectX->GetPowerUp() == false)
 	{
 		// プレイヤーの位置の取得
 		D3DXVECTOR3 pos = pObjectX->GetPos();
@@ -370,6 +371,46 @@ void CScrap::Collision(void)
 				pos.x - size.x / fNum > m_pos.x + m_vtxMax.x)
 			{
 				pObjectX->SetEnable(false);
+				return;
+			}
+		}
+	}
+	// プレイヤーが使われている且つパワーアップ状態である
+	if (pObjectX->GetEnable() == true && pObjectX->GetPowerUp() == true)
+	{
+		// プレイヤーの位置の取得
+		D3DXVECTOR3 pos = pObjectX->GetPos();
+
+		// プレイヤーの前回の位置の取得
+		D3DXVECTOR3 posOld = pObjectX->GetPosOld();
+
+		// プレイヤーのサイズの取得
+		D3DXVECTOR3 size = pObjectX->GetSize();
+
+		// 左右のめり込み判定
+		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
+			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z/* * 2.0f*/)
+		{
+			// 左から右へ
+			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
+				pos.x + size.x / fNum < m_pos.x - m_vtxMin.x)
+			{
+				Uninit();
+
+				// スコア加算
+				CScore::AddScore(10);
+
+				return;
+			}
+			// 右から左へ
+			if (posOld.x - size.x / fNum < m_pos.x - m_vtxMax.x &&
+				pos.x - size.x / fNum > m_pos.x + m_vtxMax.x)
+			{
+				Uninit();
+
+				// スコア加算
+				CScore::AddScore(10);
+
 				return;
 			}
 		}
