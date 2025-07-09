@@ -507,17 +507,20 @@ bool CObjectX::GetPowerUp(void)
 //----------------------------------------
 void CObjectX::PowerUpCollision(void)
 {
-	/* 見た目でわかる何か */
-
-	m_bRetention = false;
-
-	// パワーアップ時間の管理
-	m_nPowerUpCounter++;
-
-	/* 10秒間になってない */
-	// 10秒間
-	if (m_nPowerUpCounter >= 600)
+	if (m_bPowerUp == true)
 	{
-		m_bPowerUp = false;
+		/* 見た目でわかる何か */
+
+		m_bRetention = false;
+
+		// パワーアップ時間の管理
+		m_nPowerUpCounter++;
+
+		/* 10秒間になってない */
+		// 10秒間
+		if (m_nPowerUpCounter >= 600)
+		{
+			m_bPowerUp = false;
+		}
 	}
 }
