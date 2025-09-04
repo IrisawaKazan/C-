@@ -1,0 +1,397 @@
+//==============================================================
+//
+// [deadzoneX.cpp]
+// Author: Irisawa Kazan
+//
+//==============================================================
+#include"deadzoneX.h"
+#include"manager.h"
+#include"renderer.h"
+#include"input.h"
+#include"objectX.h"
+#include"game.h"
+#include"sound.h"
+#include"effect.h"
+
+//----------------------------------------
+// コンストラクタ
+//----------------------------------------
+CDeadzoneX::CDeadzoneX(int nPriority) : CObject(nPriority)
+{
+	m_pTexture = nullptr;
+	m_pMesh = nullptr;
+	m_pBuffMat = nullptr;
+	m_dwNumMat = NULL;
+
+	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_mtxWorld = D3DXMATRIX();
+
+	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_fRotation = 0.0f;
+}
+
+//----------------------------------------
+// デストラクタ
+//----------------------------------------
+CDeadzoneX::~CDeadzoneX()
+{
+
+}
+
+//----------------------------------------
+// 生成処理
+//----------------------------------------
+CDeadzoneX* CDeadzoneX::Create(D3DXVECTOR3 pos)
+{
+	CDeadzoneX* pDeadzoneX;
+
+	int nNumAll = CObject::GetNumAll();
+
+	if (nNumAll <= MAX_OBJ)
+	{
+		// オブジェクトXの生成
+		pDeadzoneX = new CDeadzoneX;
+
+		// 初期化処理
+		pDeadzoneX->Init();
+
+		// 位置の設定
+		pDeadzoneX->SetPosition(pos);
+
+		return pDeadzoneX;
+	}
+
+	return NULL;
+}
+
+//----------------------------------------
+// 初期化処理
+//----------------------------------------
+HRESULT CDeadzoneX::Init(void)
+{
+	// 種類の設定処理
+	CObject::SetType(TYPE_DEBRIS);
+
+	// デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+
+	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	// Xファイルの読み込み
+	D3DXLoadMeshFromX("data\\MODEL\\deadzone.x",
+		D3DXMESH_SYSTEMMEM,
+		pDevice,
+		NULL,
+		&m_pBuffMat,
+		NULL,
+		&m_dwNumMat,
+		&m_pMesh);
+
+	int nNumVtx;    // 頂点数
+	DWORD sizeFVF;  // 頂点フォーマットのサイズ
+	BYTE* pVtxBuff; // 頂点バッファのポインタ
+
+	// 頂点数の取得
+	nNumVtx = m_pMesh->GetNumVertices();
+
+	// 頂点フォーマットのサイズを取得
+	sizeFVF = D3DXGetFVFVertexSize(m_pMesh->GetFVF());
+
+	// 頂点バッファのロック
+	m_pMesh->LockVertexBuffer(D3DLOCK_READONLY, (void**)&pVtxBuff);
+
+	for (int nCntVtx = 0; nCntVtx < nNumVtx; nCntVtx++)
+	{
+		// 頂点座標の代入
+		D3DXVECTOR3 vtx = *(D3DXVECTOR3*)pVtxBuff;
+
+		// 頂点座標を比較してモデルの最小値,最大値を取得
+		if (vtx.x <= m_vtxMin.x)
+		{
+			m_vtxMin.x = vtx.x;
+		}
+
+		if (vtx.y <= m_vtxMin.y)
+		{
+			m_vtxMin.y = vtx.y;
+		}
+
+		if (vtx.z <= m_vtxMin.z)
+		{
+			m_vtxMin.z = vtx.z;
+		}
+
+		if (vtx.x <= m_vtxMax.x)
+		{
+			m_vtxMax.x = vtx.x;
+		}
+
+		if (vtx.y <= m_vtxMax.y)
+		{
+			m_vtxMax.y = vtx.y;
+		}
+
+		if (vtx.z <= m_vtxMax.z)
+		{
+			m_vtxMax.z = vtx.z;
+		}
+
+		// 頂点フォーマットのサイズ分ポインタを進める
+		pVtxBuff += sizeFVF;
+	}
+
+	// 頂点バッファのアンロック
+	m_pMesh->UnlockVertexBuffer();
+
+	D3DXMATERIAL* pMat = nullptr; // マテリアルへのポインタ
+
+	// マテリアルのデータへのポインタを取得
+	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+	for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+	{
+		if (pMat[nCntMat].pTextureFilename != nullptr)
+		{
+			// このファイル名を使用してテクスチャを読み込む
+
+
+			// テクスチャの読み込み
+
+
+			D3DXCreateTextureFromFile(pDevice, pMat[nCntMat].pTextureFilename, &m_pTexture);
+		}
+	}
+
+	return S_OK;
+}
+
+//----------------------------------------
+// 終了処理
+//----------------------------------------
+void CDeadzoneX::Uninit(void)
+{
+	// テクスチャの破棄
+	if (m_pTexture != nullptr)
+	{
+		m_pTexture = nullptr;
+	}
+
+	// メッシュの破棄
+	if (m_pMesh != nullptr)
+	{
+		m_pMesh->Release();
+		m_pMesh = nullptr;
+	}
+
+	// マテリアルの破棄
+	if (m_pBuffMat != nullptr)
+	{
+		m_pBuffMat->Release();
+		m_pBuffMat = nullptr;
+	}
+
+	this->Release();
+}
+
+//----------------------------------------
+// 更新処理
+//----------------------------------------
+void CDeadzoneX::Update(void)
+{
+	// ローテーション
+	m_fRotation += 1.0f;
+
+	m_rot = D3DXVECTOR3(m_fRotation / 150.0f/* 回る速度 */, 0.0f, 0.0f);
+
+	// 当たり判定
+	Collision();
+}
+
+//----------------------------------------
+// 描画処理
+//----------------------------------------
+void CDeadzoneX::Draw(void)
+{
+	// デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+
+	// 計算用のマトリックス
+	D3DXMATRIX mtxRot, mtxTrans;
+
+	D3DMATERIAL9 matDef; // 現在のマテリアル保存用
+
+	D3DXMATERIAL* pMat; // マテリアルデータへのポインタ
+
+	// ワールドマトリックスの初期化
+	D3DXMatrixIdentity(&m_mtxWorld);
+
+	// 向きを反映
+	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+	// 位置を反映
+	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+	// ワールドマトリックスの設定
+	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+	// 現在のマテリアルを取得
+	pDevice->GetMaterial(&matDef);
+
+	// マテリアルのデータへのポインタを取得
+	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+	for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+	{
+		// マテリアルの設定
+		pDevice->SetMaterial(&pMat[nCntMat].MatD3D);
+
+		// テクスチャの設定
+		pDevice->SetTexture(0, m_pTexture); // 今はNULL
+
+		// モデル(パーツ)の描画
+		m_pMesh->DrawSubset(nCntMat);
+	}
+
+	// 保存していたマテリアルを元に戻す
+	pDevice->SetMaterial(&matDef);
+}
+
+//----------------------------------------
+// 位置の設定処理
+//----------------------------------------
+void CDeadzoneX::SetPosition(D3DXVECTOR3 pos)
+{
+	m_pos = pos;
+}
+
+//----------------------------------------
+// 向きの設定処理
+//----------------------------------------
+void CDeadzoneX::SetRotation(D3DXVECTOR3 rot)
+{
+	m_rot = rot;
+}
+
+//----------------------------------------
+// 位置の取得処理
+//----------------------------------------
+D3DXVECTOR3 CDeadzoneX::GetPos(void)
+{
+	return m_pos;
+}
+
+//----------------------------------------
+// 向きの取得処理
+//----------------------------------------
+D3DXVECTOR3 CDeadzoneX::GetRot(void)
+{
+	return m_rot;
+}
+
+//----------------------------------------
+// 当たり判定の処理
+//----------------------------------------
+void CDeadzoneX::Collision(void)
+{
+	CObjectX* pObjectX = CGame::GetObjectX();
+
+	// 左右の判定の広さ
+	float fNum = 4.0f;
+
+	// プレイヤーが使われている且つパワーアップ状態でない
+	if (pObjectX->GetEnable() == true/* && pObjectX->GetPowerUp() == false*/)
+	{
+		// プレイヤーの位置の取得
+		D3DXVECTOR3 pos = pObjectX->GetPos();
+
+		// プレイヤーの前回の位置の取得
+		D3DXVECTOR3 posOld = pObjectX->GetPosOld();
+
+		// プレイヤーのサイズの取得
+		D3DXVECTOR3 size = pObjectX->GetSize();
+
+		// 左右のめり込み判定
+		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
+			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * fNum)
+		{
+			// 左から右へ
+			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
+				pos.x + size.x / fNum < m_pos.x - m_vtxMin.x)
+			{
+				CSound* pSound = CManager::GetSound();
+
+				// 焼ける音
+				pSound->PlaySoundA(pSound->SOUND_LABEL_DEADZONE_SE);
+
+				CEffect::Create(D3DXVECTOR3(1280.0f / 2.0f, 0.0f / 2.0f, 0.0f), D3DXCOLOR(1.0f, 0.0f, 0.0f, 0.8f), 700, 30/* 寿命 */, 25.0f, 25.0f);
+
+				pObjectX->SetEnable(false);
+				return;
+			}
+			// 右から左へ
+			if (posOld.x - size.x / fNum < m_pos.x - m_vtxMax.x &&
+				pos.x - size.x / fNum > m_pos.x + m_vtxMax.x)
+			{
+				CSound* pSound = CManager::GetSound();
+
+				// 焼ける音
+				pSound->PlaySoundA(pSound->SOUND_LABEL_DEADZONE_SE);
+
+				CEffect::Create(D3DXVECTOR3(1280.0f / 2.0f, 0.0f / 2.0f, 0.0f), D3DXCOLOR(1.0f, 0.0f, 0.0f, 0.8f), 700, 30/* 寿命 */, 25.0f, 25.0f);
+
+				pObjectX->SetEnable(false);
+				return;
+			}
+		}
+	}
+	//// プレイヤーが使われている且つパワーアップ状態である
+	//if (pObjectX->GetEnable() == true && pObjectX->GetPowerUp() == true)
+	//{
+	//	// プレイヤーの位置の取得
+	//	D3DXVECTOR3 pos = pObjectX->GetPos();
+
+	//	// プレイヤーの前回の位置の取得
+	//	D3DXVECTOR3 posOld = pObjectX->GetPosOld();
+
+	//	// プレイヤーのサイズの取得
+	//	D3DXVECTOR3 size = pObjectX->GetSize();
+
+	//	// 左右のめり込み判定
+	//	if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
+	//		pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * fNum)
+	//	{
+	//		// 左から右へ
+	//		if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
+	//			pos.x + size.x / fNum < m_pos.x - m_vtxMin.x)
+	//		{
+	//			pos.x = pos.x / 2.0f + m_pos.x / 2.0f - size.x + m_pos.x / 2.0f + m_vtxMin.x / 2.0f - posOld.x / 2.0f;
+
+	//			CSound* pSound = CManager::GetSound();
+
+	//			// 跳ね返る音
+	//			pSound->PlaySoundA(pSound->SOUND_LABEL_SAMPLESE); // 今はサンプル
+
+	//			return;
+	//		}
+	//		// 右から左へ
+	//		if (posOld.x - size.x / fNum < m_pos.x - m_vtxMax.x &&
+	//			pos.x - size.x / fNum > m_pos.x + m_vtxMax.x)
+	//		{
+	//			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x;
+
+	//			CSound* pSound = CManager::GetSound();
+
+	//			// 跳ね返る音
+	//			pSound->PlaySoundA(pSound->SOUND_LABEL_SAMPLESE); // 今はサンプル
+
+	//			return;
+	//		}
+	//	}
+	//}
+}
