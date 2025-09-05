@@ -1,8 +1,2 @@
-﻿  UFO.cpp
-C:\Users\student\source\repos\CplusDX\UFO.cpp(150,12): warning C4189: 'pObjectX': ローカル変数が初期化されましたが、参照されていません
-  manager.cpp
-  result.cpp
-  title.cpp
-  tutorial.cpp
-  コードを生成中...
+﻿  game.cpp
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe

@@ -37,6 +37,7 @@
 #include"BlackThingsX.h"
 #include"fade.h"
 #include"UFO.h"
+#include"gameBG.h"
 
 // 静的メンバ変数宣言
 CObjectX* CGame::m_pObjectX = nullptr;
@@ -91,7 +92,8 @@ HRESULT CGame::Init(void)
 	CSound* pSound = CManager::GetSound();
 
 	// bgXの生成
-	CBackgroundX::Create(D3DXVECTOR3(0.0f, -325.0f, 0.0f));
+	//CBackgroundX::Create(D3DXVECTOR3(0.0f, -325.0f, 0.0f));
+	CGameBGX::Create(D3DXVECTOR3(0.0f, -600.0f, 0.0f));
 
 	// オブジェクトXの生成(初期配置)
 	m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
