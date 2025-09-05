@@ -15,18 +15,19 @@ class CObjectX;
 class CPause;
 
 // マクロ定義
-#define MAX_SPAWN (20)                   // 敵の湧く率(数字が小さいと出現しにくくなる)
-#define NUM_FRAME_CNT (60 * 2)           // 同じ種類の敵がどれだけ連続して沸くか
-#define MAX_FRAMECOUNTER (32)            // フレームカウンターの数
-#define SPAWN_POS_X (325.0f)             // オブジェクトが湧く場所
-#define UNINIT_POS (SPAWN_POS_X + 50.0f) // オブジェクトが消える場所
+#define MAX_SPAWN (20)                     // 敵の湧く率(数字が小さいと出現しにくくなる)
+#define NUM_FRAME_CNT (60 * 2)             // 同じ種類の敵がどれだけ連続して沸くか
+#define MAX_FRAMECOUNTER (32)              // フレームカウンターの数
+#define SPAWN_POS_X (325.0f)               // オブジェクトが湧く場所
 
-#define MAX_STARDUST_SPAWN (10)          // アイテムの湧く率(数字が小さいと出現しにくくなる)
-#define NUM_STARDUST_FRAME_CNT (60 * 15) // アイテムがどれだけ連続して沸くか
-#define MAX_COIN10_SPAWN (10)            // 10コインの湧く率(数字が小さいと出現しにくくなる)
-#define NUM_COIN10_FRAME_CNT (60 * 10)   // 10コインどれだけ連続して沸くか
+#define UNINIT_POS (SPAWN_POS_X + 50.0f)   // オブジェクトが消える場所
 
-#define MAX_SmallThings_SPAWN (30)       // 小さきものの湧く率(数字が小さいと出現しにくくなる) ※ 消すかも
+#define MAX_STARDUST_SPAWN (10)            // アイテムの湧く率(数字が小さいと出現しにくくなる)
+#define NUM_STARDUST_FRAME_CNT (60 * 15)   // アイテムがどれだけ連続して沸くか
+#define MAX_COIN10_SPAWN (10)              // 10コインの湧く率(数字が小さいと出現しにくくなる)
+#define NUM_COIN10_FRAME_CNT (60 * 10)     // 10コインどれだけ連続して沸くか
+
+#define MAX_SmallThings_SPAWN (30)         // 小さきものの湧く率(数字が小さいと出現しにくくなる) ※ 消すかも
 
 // ゲーム画面クラス
 class CGame : public CScene

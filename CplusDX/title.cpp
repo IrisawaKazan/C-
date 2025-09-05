@@ -37,6 +37,7 @@
 #include"titleOBJ.h"
 #include"game.h"
 #include"titleEarthX.h"
+#include"UFO.h"
 
 // 静的メンバ変数宣言
 //CObjectX* CTitle::m_pObjectX = nullptr;
@@ -52,6 +53,13 @@ CTitle::CTitle() : CScene(CScene::MODE_TITLE)
 	{
 		m_nCounter[nCnt] = NULL;
 	}
+
+	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER_F; nCnt++)
+	{
+		m_nFrameCounter[nCnt] = NULL;
+	}
+
+	m_nSpawnFloating = NULL;
 }
 
 //----------------------------------------
@@ -151,6 +159,52 @@ void CTitle::Update(void)
 
 		m_nPlay = 0;
 		m_nCounter[1] = 0;
+	}
+
+	m_nSpawnFloating++;
+
+	float fPosX = (float)(rand() % 600/* 出てくる範囲 */);
+
+	// 現在の時刻を種として設定
+	srand((unsigned int)time(nullptr));
+
+	// 多段で出ないように制限するカウンター
+	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER_F; nCnt++)
+	{
+		m_nFrameCounter[nCnt]++;
+	}
+
+	// 背景の浮遊物
+	// UFO↑
+	if (m_nSpawnFloating >= rand() / MAX_SPAWN_FLOAT && m_nFrameCounter[0] >= NUM_FRAME_CNT)
+	{
+		CUfo::Create(D3DXVECTOR3(fPosX, -50.0f, -SPAWN_POS_Z), CUfo::UFO_000_A);
+
+		m_nSpawnFloating = 0;
+		m_nFrameCounter[0] = 0;
+	}
+	if (m_nSpawnFloating >= rand() / MAX_SPAWN_FLOAT && m_nFrameCounter[1] >= NUM_FRAME_CNT)
+	{
+		CUfo::Create(D3DXVECTOR3(-fPosX, -50.0f, -SPAWN_POS_Z), CUfo::UFO_000_A);
+
+		m_nSpawnFloating = 0;
+		m_nFrameCounter[1] = 0;
+	}
+
+	// UFO↓
+	if (m_nSpawnFloating >= rand() / MAX_SPAWN_FLOAT && m_nFrameCounter[2] >= NUM_FRAME_CNT)
+	{
+		CUfo::Create(D3DXVECTOR3(fPosX, -50.0f, SPAWN_POS_Z), CUfo::UFO_000_B);
+
+		m_nSpawnFloating = 0;
+		m_nFrameCounter[2] = 0;
+	}
+	if (m_nSpawnFloating >= rand() / MAX_SPAWN_FLOAT && m_nFrameCounter[3] >= NUM_FRAME_CNT)
+	{
+		CUfo::Create(D3DXVECTOR3(-fPosX, -50.0f, SPAWN_POS_Z), CUfo::UFO_000_B);
+
+		m_nSpawnFloating = 0;
+		m_nFrameCounter[3] = 0;
 	}
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true == true)

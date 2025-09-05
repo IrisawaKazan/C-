@@ -36,6 +36,7 @@
 #include"boostUI.h"
 #include"BlackThingsX.h"
 #include"fade.h"
+#include"UFO.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 CObjectX* CGame::m_pObjectX = nullptr;

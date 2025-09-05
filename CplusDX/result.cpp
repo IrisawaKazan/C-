@@ -104,8 +104,6 @@ void CResult::Update(void)
 	{// 決定キー(ENTERキー)が押された
 		CManager::SetMode(MODE_TITLE);
 	}
-
-
 }
 
 //----------------------------------------

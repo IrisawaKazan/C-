@@ -187,6 +187,7 @@
     <ClInclude Include="titleOBJ.h" />
     <ClInclude Include="tutorial.h" />
     <ClInclude Include="tutorialOBJ.h" />
+    <ClInclude Include="UFO.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="background.cpp" />
@@ -232,6 +233,7 @@
     <ClCompile Include="titleOBJ.cpp" />
     <ClCompile Include="tutorial.cpp" />
     <ClCompile Include="tutorialOBJ.cpp" />
+    <ClCompile Include="UFO.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
