@@ -1,13 +1,7 @@
-﻿  DStarX.cpp
-  game.cpp
-  result.cpp
-  spaceshipX.cpp
-  title.cpp
-  titleEarthX.cpp
-  tutorial.cpp
+﻿  game.cpp
   コード生成しています。
-  12 of 547 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
-    11 functions were new in current compilation
-    129 functions had inline decision re-evaluated but remain unchanged
+  0 of 547 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
