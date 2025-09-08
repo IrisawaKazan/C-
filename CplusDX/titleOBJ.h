@@ -39,7 +39,7 @@ private:
 
 	int m_nBlink;             // 点滅
 
-	float m_fMove;            // 自動で動かす用の変数
+	float m_fMove;            // 自動で動かす用のメンバ変数
 	int m_nMovingCounter[4];  // 自動で動かす用のカウンター
 
 	float m_fRotation;        // ボタンを押すと回転する

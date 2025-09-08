@@ -38,6 +38,8 @@
 #include"fade.h"
 #include"UFO.h"
 #include"gameBG.h"
+#include"spaceshipX.h"
+#include"spaceship_rotationX.h"
 
 // 静的メンバ変数宣言
 CObjectX* CGame::m_pObjectX = nullptr;
@@ -94,6 +96,10 @@ HRESULT CGame::Init(void)
 	// bgXの生成
 	//CBackgroundX::Create(D3DXVECTOR3(0.0f, -325.0f, 0.0f));
 	CGameBGX::Create(D3DXVECTOR3(0.0f, -600.0f, 0.0f));
+
+	// 背景の宇宙船の生成
+	CSpaceshipX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	CSpaceshipRotationX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// オブジェクトXの生成(初期配置)
 	m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));

@@ -181,6 +181,8 @@
     <ClInclude Include="scrapX.h" />
     <ClInclude Include="SmallThingsX.h" />
     <ClInclude Include="sound.h" />
+    <ClInclude Include="spaceshipX.h" />
+    <ClInclude Include="spaceship_rotationX.h" />
     <ClInclude Include="stardustX.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="title.h" />
@@ -228,6 +230,8 @@
     <ClCompile Include="scrapX.cpp" />
     <ClCompile Include="SmallThingsX.cpp" />
     <ClCompile Include="sound.cpp" />
+    <ClCompile Include="spaceshipX.cpp" />
+    <ClCompile Include="spaceship_rotationX.cpp" />
     <ClCompile Include="stardustX.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="title.cpp" />
