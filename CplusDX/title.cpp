@@ -163,7 +163,7 @@ void CTitle::Update(void)
 
 	m_nSpawnFloating++;
 
-	float fPosX = (float)(rand() % 600/* o‚Ä‚­‚é”ÍˆÍ */);
+	float fPosX = (float)(rand() % 550/* o‚Ä‚­‚é”ÍˆÍ */);
 
 	// Œ»İ‚Ì‚ğí‚Æ‚µ‚Äİ’è
 	srand((unsigned int)time(nullptr));

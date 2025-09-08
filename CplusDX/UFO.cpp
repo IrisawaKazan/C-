@@ -183,12 +183,14 @@ void CUfo::Update(void)
 		{
 		case UFO_000_A:
 			m_pos.z += 2.0f;
+			m_pos.y += 0.05f;
 			m_pos.x += fDiagonal;
 			m_rot = D3DXVECTOR3(0.0f, -m_fRotation / 500.0f/* ‰ñ‚é‘¬“x */, 0.0f);
 			break;
 
 		case UFO_000_B:
 			m_pos.z -= 3.0f;
+			m_pos.y -= 0.1f;
 			m_pos.x -= fDiagonal;
 			m_rot = D3DXVECTOR3(0.0f, m_fRotation / 500.0f/* ‰ñ‚é‘¬“x */, 0.0f);
 			break;
