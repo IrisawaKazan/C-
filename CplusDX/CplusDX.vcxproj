@@ -154,6 +154,7 @@
     <ClInclude Include="deadzoneX.h" />
     <ClInclude Include="debrisX.h" />
     <ClInclude Include="debugproc.h" />
+    <ClInclude Include="DStarX.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effect3D.h" />
     <ClInclude Include="enemy.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="deadzoneX.cpp" />
     <ClCompile Include="debrisX.cpp" />
     <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="DStarX.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effect3D.cpp" />
     <ClCompile Include="enemy.cpp" />
