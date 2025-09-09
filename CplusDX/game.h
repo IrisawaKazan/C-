@@ -29,6 +29,9 @@ class CPause;
 
 #define MAX_SmallThings_SPAWN (30)         // 小さきものの湧く率(数字が小さいと出現しにくくなる) ※ 消すかも
 
+#define NUM_SPACESHIP_X (250.0f)           // 宇宙船の位置X
+#define NUM_SPACESHIP_Y (-100.0f)          // 宇宙船の位置Y
+
 // ゲーム画面クラス
 class CGame : public CScene
 {

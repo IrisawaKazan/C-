@@ -103,7 +103,7 @@ HRESULT CGame::Init(void)
 	CSpaceshipRotationX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// 背景のDスターの生成
-	CDStarX::Create(D3DXVECTOR3(-250.0f, -500.0f, 100.0f));
+	CDStarX::Create(D3DXVECTOR3(-350.0f, -500.0f, 200.0f));
 
 	// オブジェクトXの生成(初期配置)
 	m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));

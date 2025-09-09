@@ -10,6 +10,7 @@
 #include"input.h"
 #include"effect.h"
 #include"sound.h"
+#include"game.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -184,7 +185,7 @@ void CSpaceshipX::Update(void)
 		m_nMovingCounter[2] = 0;
 	}
 
-	m_pos = D3DXVECTOR3(100.0f, -100.0f, m_fMove);
+	m_pos = D3DXVECTOR3(NUM_SPACESHIP_X, NUM_SPACESHIP_Y, m_fMove);
 }
 
 //----------------------------------------
