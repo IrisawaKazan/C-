@@ -1,2 +1,3 @@
-﻿  game.cpp
+﻿  coin10X.cpp
+C:\Users\student\source\repos\CplusDX\coin10X.cpp(215,10): warning C4189: 'pSound': ローカル変数が初期化されましたが、参照されていません
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe

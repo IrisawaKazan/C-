@@ -33,6 +33,9 @@ CCoin10X::CCoin10X(int nPriority) : CObject(nPriority)
 	m_type = COIN10_NONE;
 	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_nNum = NULL;
+	m_nCounter = NULL;
 }
 
 //----------------------------------------
@@ -209,6 +212,8 @@ void CCoin10X::Update(void)
 {
 	CObjectX* pObjectX = CGame::GetObjectX();
 
+	CSound* pSound = CManager::GetSound();
+
 	if (pObjectX->GetEnable() == true)
 	{
 		switch (m_type)
@@ -357,6 +362,8 @@ void CCoin10X::Collision(void)
 {
 	CObjectX* pObjectX = CGame::GetObjectX();
 
+	CSound* pSound = CManager::GetSound();
+
 	// 左右の判定の広さ
 	float fNum = 2.0f;
 
@@ -382,6 +389,8 @@ void CCoin10X::Collision(void)
 			if (posOld.x + size.x / fNum > m_pos.x + m_vtxMin.x &&
 				pos.x + size.x / fNum < m_pos.x - m_vtxMin.x)
 			{
+				//m_nNum += 1;
+
 				if (pObjectX->GetScoreBonus() == false)
 				{
 					// スコア加算
@@ -394,8 +403,6 @@ void CCoin10X::Collision(void)
 				}
 
 				Uninit();
-
-				CSound* pSound = CManager::GetSound();
 
 				// キラキラ音
 				pSound->PlaySoundA(pSound->SOUND_LABEL_COIN_SE);
@@ -406,6 +413,8 @@ void CCoin10X::Collision(void)
 			if (posOld.x - size.x / fNum < m_pos.x - m_vtxMax.x &&
 				pos.x - size.x / fNum > m_pos.x + m_vtxMax.x)
 			{
+				//m_nNum += 1;
+
 				if (pObjectX->GetScoreBonus() == false)
 				{
 					// スコア加算
@@ -418,8 +427,6 @@ void CCoin10X::Collision(void)
 				}
 
 				Uninit();
-
-				CSound* pSound = CManager::GetSound();
 
 				// キラキラ音
 				pSound->PlaySoundA(pSound->SOUND_LABEL_COIN_SE);

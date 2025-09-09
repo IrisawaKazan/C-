@@ -33,6 +33,7 @@ public:
 		SOUND_LABEL_CAVEAT_SE,      // 警告SE
 		SOUND_LABEL_LIGHT_SE,       // ライトSE
 		SOUND_LABEL_ERROR_SE,       // エラーSE
+		SOUND_LABEL_APPLAUSE_SE,    // 拍手SE
 
 		SOUND_LABEL_MAX,
 	} SOUND_LABEL;
@@ -79,6 +80,7 @@ private:
 		{"data/SE/caveatSE.wav", 0},                             // 警告SE
 		{"data/SE/lightSE.wav", 0},                              // ライトSE
 		{"data/SE/error.wav", 0},                                // エラーSE
+		{"data/SE/applauseSE.wav", 0},                           // 拍手SE
 
 	};
 };

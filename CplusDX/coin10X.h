@@ -21,8 +21,8 @@ public:
 	typedef enum
 	{
 		COIN10_NONE = 0,
-		COIN10_000_A, // 星屑→
-		COIN10_000_B, // ←星屑
+		COIN10_000_A, // 10コイン→
+		COIN10_000_B, // ←10コイン
 
 		COIN10_MAX
 	}COIN10;
@@ -61,6 +61,9 @@ private:
 	COIN10 m_type;
 	D3DXVECTOR3 m_vtxMin; // モデルの最小値
 	D3DXVECTOR3 m_vtxMax; // モデルの最大値
+
+	int m_nNum;
+	int m_nCounter;
 };
 
 #endif

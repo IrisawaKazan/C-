@@ -1,20 +1,21 @@
 ﻿  BlackThingsX.cpp
+  DStarX.cpp
   SmallThingsX.cpp
-  UFO.cpp
-  bgX.cpp
   coin10X.cpp
   deadzoneX.cpp
   debrisX.cpp
   game.cpp
-  gameBG.cpp
   manager.cpp
-  renderer.cpp
+  objectX.cpp
   result.cpp
   scrapX.cpp
+  sound.cpp
   spaceshipX.cpp
   spaceship_rotationX.cpp
   stardustX.cpp
   title.cpp
+  titleEarthX.cpp
+  titleOBJ.cpp
   tutorial.cpp
   tutorialOBJ.cpp
   コード生成しています。

@@ -449,7 +449,7 @@ void CSmallThingsX::Collision(void)
 		D3DXVECTOR3 size = pObjectX->GetSize();
 
 		// ¶‰E‚Ì‚ß‚èž‚Ý”»’è
-		if (pos.z + size.z / fNum > m_pos.z + m_vtxMax.z &&
+		if (pos.z + size.z / (fNum - 50.0f) > m_pos.z + m_vtxMax.z &&
 			pos.z + size.z / fNum < m_pos.z - m_vtxMin.z * 2.0f)
 		{
 			// ¶‚©‚ç‰E‚Ö
