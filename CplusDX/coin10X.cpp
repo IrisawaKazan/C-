@@ -212,7 +212,7 @@ void CCoin10X::Update(void)
 {
 	CObjectX* pObjectX = CGame::GetObjectX();
 
-	CSound* pSound = CManager::GetSound();
+	//CSound* pSound = CManager::GetSound();
 
 	if (pObjectX->GetEnable() == true)
 	{

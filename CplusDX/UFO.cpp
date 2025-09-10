@@ -147,7 +147,7 @@ void CUfo::Uninit(void)
 //----------------------------------------
 void CUfo::Update(void)
 {
-	CObjectX* pObjectX = CGame::GetObjectX();
+	//CObjectX* pObjectX = CGame::GetObjectX();
 
 	CInputKeyboard* pInputKeyboard;
 

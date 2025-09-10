@@ -63,24 +63,24 @@ private:
 	DWORD m_aSizeAudio[SOUND_LABEL_MAX];                   // オーディオデータサイズ
 	SOUNDINFO m_aSoundInfo[SOUND_LABEL_MAX] = 
 	{
-		{"data/BGM/sample_bgm.wav", -1},                         // サンプルメインBGM
-		{"data/BGM/titleBGM.wav", -1},                           // タイトルBGM
-		{"data/BGM/MWAM_Mr.Bad Mouth_Instrumental.wav", -1},     // ゲームBGM
-		{"data/BGM/MWAM_babylon_Instrumental_lastpart.wav", -1}, // リザルトBGM
+		{"data/BGM/sample_bgm.wav", -1},     // サンプルメインBGM
+		{"data/BGM/titleBGM.wav", -1},       // タイトルBGM
+		{"data/BGM/M_M_I.wav", -1},          // ゲームBGM
+		{"data/BGM/M_b_I_lastpart.wav", -1}, // リザルトBGM
 
-		{"data/SE/sample_se.wav", 0},                            // サンプルSE
-		{"data/SE/coinSE.wav", 0},                               // コインSE
-		{"data/SE/deadzoneSE.wav", 0},                           // 焼けるSE
-		{"data/SE/killplayerSE.wav", 0},                         // プレイヤーが死んだときSE
-		{"data/SE/breakSE.wav", 0},                              // 崩れるSE
-		{"data/SE/itemSE.wav", 0},                               // アイテムSE
-		{"data/SE/itemuseSE.wav", 0},                            // アイテム使用SE
-		{"data/SE/titleSE_morse.wav", 0},                        // ・・・---SE
-		{"data/SE/titleSE_noise.wav", 0},                        // ホワイトノイズSE
-		{"data/SE/caveatSE.wav", 0},                             // 警告SE
-		{"data/SE/lightSE.wav", 0},                              // ライトSE
-		{"data/SE/error.wav", 0},                                // エラーSE
-		{"data/SE/applauseSE.wav", 0},                           // 拍手SE
+		{"data/SE/sample_se.wav", 0},        // サンプルSE
+		{"data/SE/coinSE.wav", 0},           // コインSE
+		{"data/SE/deadzoneSE.wav", 0},       // 焼けるSE
+		{"data/SE/killplayerSE.wav", 0},     // プレイヤーが死んだときSE
+		{"data/SE/breakSE.wav", 0},          // 崩れるSE
+		{"data/SE/itemSE.wav", 0},           // アイテムSE
+		{"data/SE/itemuseSE.wav", 0},        // アイテム使用SE
+		{"data/SE/titleSE_morse.wav", 0},    // ・・・---SE
+		{"data/SE/titleSE_noise.wav", 0},    // ホワイトノイズSE
+		{"data/SE/caveatSE.wav", 0},         // 警告SE
+		{"data/SE/lightSE.wav", 0},          // ライトSE
+		{"data/SE/error.wav", 0},            // エラーSE
+		{"data/SE/applauseSE.wav", 0},       // 拍手SE
 
 	};
 };
