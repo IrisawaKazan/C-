@@ -41,6 +41,7 @@
 #include"spaceshipX.h"
 #include"spaceship_rotationX.h"
 #include"DStarX.h"
+#include"mfX.h"
 
 // 静的メンバ変数宣言
 CObjectX* CGame::m_pObjectX = nullptr;
@@ -104,6 +105,9 @@ HRESULT CGame::Init(void)
 
 	// 背景のDスターの生成
 	CDStarX::Create(D3DXVECTOR3(-350.0f, -500.0f, 200.0f));
+
+	// 背景のMFの生成
+	CMf::Create(D3DXVECTOR3(-100.0f, -300.0f, 0.0f));
 
 	// オブジェクトXの生成(初期配置)
 	m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));

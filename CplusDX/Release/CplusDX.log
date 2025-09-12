@@ -1,14 +1,9 @@
-﻿  debrisX.cpp
-  game.cpp
-  manager.cpp
-  objectX.cpp
-  result.cpp
-  scrapX.cpp
-  title.cpp
-  tutorial.cpp
+﻿  game.cpp
+  mfX.cpp
+  spaceshipX.cpp
   コード生成しています。
-  15 of 547 functions ( 2.7%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+  12 of 558 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
+    11 functions were new in current compilation
+    113 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\CplusDX.exe
