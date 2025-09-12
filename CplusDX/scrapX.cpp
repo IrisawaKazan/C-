@@ -11,6 +11,7 @@
 #include"game.h"
 #include"sound.h"
 #include"score.h"
+#include"effect.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -30,6 +31,8 @@ CScrap::CScrap(int nPriority) : CObject(nPriority)
 	m_type = SCRAP_NONE;
 	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_nCounter = NULL;
 }
 
 //----------------------------------------
@@ -74,6 +77,8 @@ CScrap* CScrap::Create(D3DXVECTOR3 pos, SCRAP type)
 //----------------------------------------
 HRESULT CScrap::Init(void)
 {
+	m_nCounter = 0;
+
 	// 種類の設定処理
 	CObject::SetType(TYPE_SCRAP);
 
@@ -206,8 +211,22 @@ void CScrap::Update(void)
 {
 	CObjectX* pObjectX = CGame::GetObjectX();
 
+	// 位置の取得
+	D3DXVECTOR3 pos = GetPos();
+
+	m_nCounter++;
+
 	if (pObjectX->GetEnable() == true)
 	{
+		if (m_nCounter % 110 == 0) // 点滅させる
+		{
+			CEffect::Create(D3DXVECTOR3((pos.x * 2.25f) + 1280.0f / 2.0f, (-pos.z * 2.25f) + 720.0f / 2.0f, 0.0f), D3DXCOLOR(0.5f, 0.0f, 0.0f, 1.0f), 100, 15, 25.0f, 25.0f);
+		}
+		if (m_nCounter % 120 == 0) // 点滅させる
+		{
+			CEffect::Create(D3DXVECTOR3((pos.x * 2.25f) + 1280.0f / 2.0f, (-pos.z * 2.25f) + 720.0f / 2.0f, 0.0f), D3DXCOLOR(0.5f, 0.0f, 0.0f, 1.0f), 120, 15, 25.0f, 25.0f);
+		}
+
 		switch (m_type)
 		{
 		case SCRAP_000_A:

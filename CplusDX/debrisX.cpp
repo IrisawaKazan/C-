@@ -12,6 +12,7 @@
 #include"game.h"
 #include"sound.h"
 #include"score.h"
+#include"effect.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -33,6 +34,8 @@ CDebrisX::CDebrisX(int nPriority) : CObject(nPriority)
 	m_type = DEBRIS_NONE;
 	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_nCounter = NULL;
 }
 
 //----------------------------------------
@@ -77,6 +80,8 @@ CDebrisX* CDebrisX::Create(D3DXVECTOR3 pos, DEBRIS type)
 //----------------------------------------
 HRESULT CDebrisX::Init(void)
 {
+	m_nCounter = 0;
+
 	// 種類の設定処理
 	CObject::SetType(TYPE_DEBRIS);
 
@@ -211,8 +216,18 @@ void CDebrisX::Update(void)
 {
 	CObjectX* pObjectX = CGame::GetObjectX();
 
+	// 位置の取得
+	D3DXVECTOR3 pos = GetPos();
+
+	m_nCounter++;
+
 	if (pObjectX->GetEnable() == true)
 	{
+		if (m_nCounter % 60 == 0) // 点滅させる
+		{
+			CEffect::Create(D3DXVECTOR3((pos.x * 2.25f) + 1280.0f / 2.0f, (-pos.z * 2.25f) + 720.0f / 2.0f, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f), 80, 15, 25.0f, 25.0f);
+		}
+
 		// 前回の位置を保存
 		m_posOld = m_pos;
 
