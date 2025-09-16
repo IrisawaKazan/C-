@@ -65,6 +65,8 @@ CGame::CGame() : CScene(CScene::MODE_GAME)
 	m_nBlackThingsCounter = NULL;
 
 	m_nSmallThingsSpawn = NULL;
+
+	m_nTransition = NULL;
 }
 
 //----------------------------------------
@@ -132,6 +134,8 @@ HRESULT CGame::Init(void)
 	pSound->PlaySoundA(CSound::SOUND_LABEL_GAME_BGM);
 
 	m_bPause = false; // ポーズ解除
+
+	m_nTransition = 0;
 
 	return S_OK;
 }
@@ -483,20 +487,34 @@ void CGame::Update(void)
 			}
 		}
 
-#endif
-	}
-
-#ifdef NDEBUG // Release時のみ
-
-	if (m_pObjectX->GetEnable() == false)
-
-#endif
-	{
 		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 		{// 決定キー(ENTERキー)が押された
 			CManager::SetMode(MODE_RESULT);
 		}
 	}
+
+#endif
+
+#ifdef NDEBUG // Release時のみ
+
+		if (m_pObjectX->GetEnable() == false)
+		{
+			if (m_nTransition <= 60 * 2)
+			{
+				m_nTransition++;
+			}
+
+			if (m_nTransition >= 60 * 2)
+			{
+				if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+				{// 決定キー(ENTERキー)が押された
+					CManager::SetMode(MODE_RESULT);
+				}
+			}
+		}
+	}
+
+#endif
 }
 
 //----------------------------------------

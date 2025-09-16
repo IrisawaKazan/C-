@@ -61,6 +61,8 @@ private:
 
 	static CObjectX* m_pObjectX;
 	static CPause* m_pPause;
+
+	int m_nTransition;
 };
 
 #endif
