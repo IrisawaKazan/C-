@@ -151,7 +151,7 @@ Mesh {
    0.000000;0.000000;0.000000;;
    0.000000;0.000000;0.000000;;
    TextureFilename {
-    "C:\\Users\\student\\source\\repos\\CplusDX\\data\\TEXTURE\\bg100.png";
+    "data\\TEXTURE\\bg100.png";
    }
   }
  }

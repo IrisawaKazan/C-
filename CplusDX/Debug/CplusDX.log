@@ -1,4 +1,9 @@
-﻿  game.cpp
-  objectX.cpp
+﻿  debugproc.cpp
+  game.cpp
+  manager.cpp
+  renderer.cpp
+  result.cpp
+  title.cpp
+  tutorial.cpp
   コードを生成中...
   CplusDX.vcxproj -> C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
