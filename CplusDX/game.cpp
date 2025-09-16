@@ -491,7 +491,6 @@ void CGame::Update(void)
 		{// 決定キー(ENTERキー)が押された
 			CManager::SetMode(MODE_RESULT);
 		}
-	}
 
 #endif
 
@@ -499,22 +498,23 @@ void CGame::Update(void)
 
 		if (m_pObjectX->GetEnable() == false)
 		{
-			if (m_nTransition <= 60 * 2)
+			if (m_nTransition <= 60 * 4)
 			{
 				m_nTransition++;
 			}
 
-			if (m_nTransition >= 60 * 2)
+			if (m_nTransition >= 60 * 4)
 			{
-				if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+				//if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 				{// 決定キー(ENTERキー)が押された
 					CManager::SetMode(MODE_RESULT);
 				}
 			}
 		}
-	}
 
 #endif
+
+	}
 }
 
 //----------------------------------------
