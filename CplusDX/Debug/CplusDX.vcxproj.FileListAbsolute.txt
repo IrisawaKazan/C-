@@ -1,2 +1,3 @@
 C:\Users\student\Desktop\CplusDX\Debug\CplusDX.exe
 C:\Users\student\source\repos\CplusDX\Debug\CplusDX.exe
+C:\Users\student\Documents\Git\C-\CplusDX\Debug\CplusDX.exe
